@@ -1,0 +1,11 @@
+# JetBrains IDE's management archives
+
+*.iml
+
+*.idea
+
+out/
+
+# Required compressed files for submission
+
+*.tar.gz
