@@ -6,6 +6,8 @@
 
 out/
 
-# Required compressed files for submission
+# Required files for submission
 
 *.tar.gz
+
+*.class
