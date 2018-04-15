@@ -14,4 +14,10 @@ public class PrivateArrayLift extends ArrayLift {
         return groups.add(pv);
     }
 
+    @Override
+    public String toString() {
+        return "PrivateArrayLift{" +
+                "groups=" + groups +
+                '}';
+    }
 }

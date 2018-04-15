@@ -13,4 +13,11 @@ public class PublicArrayLift extends ArrayLift{
     public boolean addGroup(PublicGroup pb) {
         return groups.add(pb);
     }
+
+    @Override
+    public String toString() {
+        return "PublicArrayLift{" +
+                "groups=" + groups +
+                '}';
+    }
 }
