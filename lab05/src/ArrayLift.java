@@ -47,7 +47,8 @@ public class ArrayLift {
 
         else {
             acceptedPaymentMethods.clear();
-
+            price = 0;
+            return acceptedPaymentMethods.add(pay);
         }
     }
 
