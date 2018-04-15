@@ -15,14 +15,16 @@ public class ArrayLift {
 
     public ArrayLift(Driver driver) {
         this.driver = driver;
-        riders = new ArrayList<Rider>();
         maxOccupation = 4;
+        riders = new ArrayList<Rider>();
+        acceptedPaymentMethods = new ArrayList<PaymentMethod>();
     }
 
     public ArrayLift(Driver driver, int availableSeats) {
         this.driver = driver;
         maxOccupation = availableSeats;
         riders = new ArrayList<Rider>();
+        acceptedPaymentMethods = new ArrayList<PaymentMethod>();
     }
 
     boolean addRider(Rider rider) {
@@ -50,6 +52,14 @@ public class ArrayLift {
             price = 0;
             return acceptedPaymentMethods.add(pay);
         }
+    }
+
+    boolean checkPaymentMethod(PaymentMethod pay) {
+        return acceptedPaymentMethods.contains(pay);
+    }
+
+    boolean isLiftFree() {
+        return acceptedPaymentMethods.contains(PaymentMethod.FREE);
     }
 
     boolean removePaymentMethod(PaymentMethod pay) {
@@ -119,6 +129,8 @@ public class ArrayLift {
                 ", destinationLongitude=" + destinationLongitude +
                 ", meetingHourDay='" + meetingHourDay + '\'' +
                 ", maxOccupation=" + maxOccupation +
+                ", price=" + price +
+                ", acceptedPaymentMethods=" + acceptedPaymentMethods +
                 '}';
     }
 }
