@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class ArrayLift {
 
-    private ArrayList<Rider> riders;
-    private Driver driver;
+    private ArrayList<LiftRider> riders;
+    private LiftDriver driver;
     private double meetingPointLatitude;
     private double meetingPointLongitude;
     private double destinationLatitude;
@@ -13,25 +13,25 @@ public class ArrayLift {
     private float price;
     private ArrayList<PaymentMethod> acceptedPaymentMethods;
 
-    public ArrayLift(Driver driver) {
+    public ArrayLift(LiftDriver driver) {
         this.driver = driver;
         maxOccupation = 4;
-        riders = new ArrayList<Rider>();
+        riders = new ArrayList<LiftRider>();
         acceptedPaymentMethods = new ArrayList<PaymentMethod>();
     }
 
-    public ArrayLift(Driver driver, int availableSeats) {
+    public ArrayLift(LiftDriver driver, int availableSeats) {
         this.driver = driver;
         maxOccupation = availableSeats;
-        riders = new ArrayList<Rider>();
+        riders = new ArrayList<LiftRider>();
         acceptedPaymentMethods = new ArrayList<PaymentMethod>();
     }
 
-    boolean addRider(Rider rider) {
+    boolean addRider(LiftRider rider) {
         return riders.size() != maxOccupation && riders.add(rider);
     }
 
-    boolean removeRider(Rider rider) {
+    boolean removeRider(LiftRider rider) {
         return riders.remove(rider);
     }
 
@@ -66,7 +66,7 @@ public class ArrayLift {
         return acceptedPaymentMethods.remove(pay);
     }
 
-    public ArrayList<Rider> getRiders() {
+    public ArrayList<LiftRider> getRiders() {
         return riders;
     }
 
@@ -116,6 +116,42 @@ public class ArrayLift {
 
     public void setMaxOccupation(int maxOccupation) {
         this.maxOccupation = maxOccupation;
+    }
+
+    public void setRiders(ArrayList<LiftRider> riders) {
+        this.riders = riders;
+    }
+
+    public LiftDriver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(LiftDriver driver) {
+        this.driver = driver;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public ArrayList<PaymentMethod> getAcceptedPaymentMethods() {
+        return acceptedPaymentMethods;
+    }
+
+    public void setAcceptedPaymentMethods(ArrayList<PaymentMethod> acceptedPaymentMethods) {
+        this.acceptedPaymentMethods = acceptedPaymentMethods;
+    }
+
+    public boolean giveRiderRating(int userId, float rating) {
+//        nada aki
+    }
+
+    public boolean giveDriverRating(float rating) {
+//        nada aki
     }
 
     @Override

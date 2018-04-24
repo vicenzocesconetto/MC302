@@ -1,8 +1,11 @@
+import java.util.ArrayList;
+
 class Rider {
 
     private String creditCard;
     private boolean payWithCash;
     private static int numberOfDrivers;
+    private ArrayList<LiftRider> lifts;
     private Profile profile;
 
     public Rider() {}
@@ -47,11 +50,24 @@ class Rider {
         this.profile = profile;
     }
 
+    public ArrayList<LiftRider> getLifts() {
+        return lifts;
+    }
+
+    public void setLifts(ArrayList<LiftRider> lifts) {
+        this.lifts = lifts;
+    }
+
+    public boolean addLiftRider(LiftRider lr) {
+        return lifts.add(lr);
+    }
+
     @Override
     public String toString() {
         return "Rider{" +
                 "creditCard='" + creditCard + '\'' +
                 ", payWithCash=" + payWithCash +
+                ", lifts=" + lifts +
                 ", profile=" + profile +
                 '}';
     }

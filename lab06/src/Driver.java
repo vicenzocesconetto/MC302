@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class Driver {
     private int habilitationTime;
     private String favoriteMusicGenre;
@@ -5,6 +7,7 @@ class Driver {
     private final String driverLicense;
     private String vehicleBrand;
     private String vehicleModel;
+    private ArrayList<LiftDriver> lifts;
     private int seatsAvailable;
     private static int numberOfRiders;
     private Profile driverProfile;
@@ -87,6 +90,14 @@ class Driver {
 
     public void setDriverProfile(Profile driverProfile) {
         this.driverProfile = driverProfile;
+    }
+
+    public ArrayList<LiftDriver> getLifts() {
+        return lifts;
+    }
+
+    public void setLifts(ArrayList<LiftDriver> lifts) {
+        this.lifts = lifts;
     }
 
     @Override

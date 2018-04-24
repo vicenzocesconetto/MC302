@@ -58,14 +58,6 @@ public class Profile {
         this.telephone = telephone;
     }
 
-    public boolean getSmoker() {
-        return smoker;
-    }
-
-    public void setSmoker(boolean smoker) {
-        this.smoker = smoker;
-    }
-
     public int getHabilitationTime() {
         return habilitationTime;
     }
@@ -98,6 +90,22 @@ public class Profile {
         this.driverProfile = driverProfile;
     }
 
+    public boolean isSmoker() {
+        return smoker;
+    }
+
+    public void setSmoker(boolean smoker) {
+        this.smoker = smoker;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Profile{" +
@@ -111,7 +119,7 @@ public class Profile {
                 ", rating=" + rating +
                 ", riderProfile=" + riderProfile +
                 ", driverProfile=" + driverProfile +
-                ", user=" + user +
+                ", userId=" + user.getId() +
                 '}';
     }
 }
