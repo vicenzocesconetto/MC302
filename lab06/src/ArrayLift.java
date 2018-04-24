@@ -27,12 +27,19 @@ public class ArrayLift {
         acceptedPaymentMethods = new ArrayList<PaymentMethod>();
     }
 
-    boolean addRider(LiftRider rider) {
-        return riders.size() != maxOccupation && riders.add(rider);
+    boolean addRider(Rider rider) {
+        return maxOccupation != riders.size() && riders.add(new LiftRider(rider, this));
+
     }
 
-    boolean removeRider(LiftRider rider) {
-        return riders.remove(rider);
+    boolean removeRider(Rider rider) {
+        for(LiftRider liftRider: riders) {
+            if(liftRider.getRider().equals(rider)){
+                riders.remove(liftRider);
+                return true;
+            }
+        }
+        return false;
     }
 
     boolean isRideEmpty() {
@@ -147,11 +154,21 @@ public class ArrayLift {
     }
 
     public boolean giveRiderRating(int userId, float rating) {
-//        nada aki
+        for(LiftRider liftRider : riders) {
+            if(liftRider.getRider().getProfile().getUser().getId() == userId) {
+                liftRider.setRating(rating);
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean giveDriverRating(float rating) {
-//        nada aki
+        if(driver != null) {
+            driver.setRating(rating);
+            return true;
+        } else
+        return false;
     }
 
     @Override

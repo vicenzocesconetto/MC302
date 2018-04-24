@@ -12,12 +12,24 @@ class Driver {
     private static int numberOfRiders;
     private Profile driverProfile;
 
+
     public Driver() {
         driverLicense = "2018!";
     }
 
-    ArrayLift offerLift() {
-        return new ArrayLift(this, seatsAvailable);
+    public ArrayLift offerLift(ArrayList<LiftRider> riders, float price, ArrayList<PaymentMethod> acceptedPaymentMethods) {
+        LiftDriver liftDriver = new LiftDriver(this);
+        ArrayLift arrayLift = new ArrayLift(liftDriver);
+        arrayLift.setRiders(riders);
+        arrayLift.setPrice(price);
+        arrayLift.setAcceptedPaymentMethods(acceptedPaymentMethods);
+    }
+
+    public ArrayLift offerLift(ArrayList<LiftRider> riders, LiftDriver driver, double meetingPointLatitude,
+                        double meetingPointLongitude, double destinationLatitude, double destinationLongitude,
+                        String meetingHourDay, int maxOccupation, float price,
+                        ArrayList<PaymentMethod> acceptedPaymentMethods) {
+
     }
 
     public int getHabilitationTime() {

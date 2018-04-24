@@ -3,6 +3,24 @@ public class LiftDriver {
     private Driver driver;
     private float rating;
 
+    public LiftDriver() {
+    }
+
+    public LiftDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    public LiftDriver(ArrayLift lift, Driver driver) {
+        this.lift = lift;
+        this.driver = driver;
+    }
+
+    public LiftDriver(ArrayLift lift, Driver driver, float rating) {
+        this.lift = lift;
+        this.driver = driver;
+        this.rating = rating;
+    }
+
     public ArrayLift getLift() {
         return lift;
     }

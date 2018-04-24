@@ -3,6 +3,24 @@ public class LiftRider {
     private ArrayLift lift;
     private float rating;
 
+    public LiftRider() {
+    }
+
+    public LiftRider(Rider rider) {
+        this.rider = rider;
+    }
+
+    public LiftRider(Rider rider, ArrayLift lift) {
+        this.rider = rider;
+        this.lift = lift;
+    }
+
+    public LiftRider(Rider rider, ArrayLift lift, float rating) {
+        this.rider = rider;
+        this.lift = lift;
+        this.rating = rating;
+    }
+
     public Rider getRider() {
         return rider;
     }
