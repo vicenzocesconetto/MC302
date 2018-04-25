@@ -14,7 +14,7 @@ class Driver {
 
 
     public Driver() {
-        driverLicense = "2018!";
+        driverLicense = "2018";
     }
 
     public ArrayLift offerLift(float price, ArrayList<PaymentMethod> acceptedPaymentMethods) {
