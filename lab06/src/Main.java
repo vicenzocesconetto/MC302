@@ -2,6 +2,39 @@ import java.util.ArrayList;
 
 /*
 
+Há diversos relacionamentos bi-direcionais em todo o sistema, como é o caso entre Carona e CaronaCaroneiro,
+por exemplo. Quais são as vantagens e desvantagens de se utilizar relacionamentos
+bi-direcionais?
+
+Vantagens: ambos os lados conseguem ver a relacao; ambos conseguem mandar mensagens para a outra entidade;
+ambos tem informacao um do outro.
+
+Desvantagens: provavelmente ira haver informacao duplicada; pode causar inconsistencia;
+
+
+O relacionamento entre a classe Carona e Caronante não é de muitos para muitos. Considerando
+esse fato, foi realmente necessário criar a classe CaronaCaronante? Qual seria uma alternativa se
+não quiséssemos criar a classe associativa, mas ainda assim guardar informação do relacionamento
+(nesse caso, a nota)? Quais as vantagens e desvantagens dessa abordagem alternativa, comparando
+com a atual?
+
+Nao foi. Poderiamos fazer a referencia para Carona diretamente assim tambem para o Caronante. A Alternativa seria
+guardar essas informacoes na propria carona. Simplicidade; haveria menos classes, seria mais facil manter o sistema,
+haveria menos dados desnecessarios;
+
+
+Em um sistema real, o funcionamento dos métodos criados (caso nenhuma modificação adicional
+tenha sido feita) são suficientes para garantir consistência do sistema? É possível que haja algum
+problema com um relacionamento entre as classes caso não seja feito alguma verificação adicional?
+Por exemplo, poderíamos chegar em um estado onde um caronante se relaciona com uma carona,
+mas tal carona não tem referência a esse caronante? Como poderíamos impedir que algo assim
+ocorra? Caso no seu sistema não seja possível criar esse tipo de inconsistência, então "Não é
+possível"é uma resposta válida (mas iremos verificar se é verdade).
+
+
+Nao, nao eh. Sim, nosso sistema ainda eh vulneravel a inconsistencias. Sim. Checando nas classes relacionadas se os dados
+estao batendo corretamente.
+
 */
 public class Main {
     public static void main(String[] args) {
@@ -60,6 +93,11 @@ public class Main {
         System.out.println(u3.print());
         System.out.println(u4.print());
 
+        System.out.println(carona);
+        System.out.println("User id = 1, Driver, rating: " + p1.getRating());
+        System.out.println("User id = 2, Rider, rating: " + p2.getRating());
+        System.out.println("User id = 3, Rider, rating: " + p3.getRating());
+        System.out.println("User id = 4, Rider, rating: " + p4.getRating());
 
     }
 }
