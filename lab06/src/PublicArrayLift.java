@@ -5,7 +5,7 @@ public class PublicArrayLift extends ArrayLift{
     private ArrayList<PublicGroup> groups;
 
 
-    public PublicArrayLift(Driver driver) {
+    public PublicArrayLift(LiftDriver driver) {
             super(driver);
             groups = new ArrayList<PublicGroup>();
     }

@@ -71,6 +71,10 @@ public class Main {
         Rider r3 = new Rider(true);
         Rider r4 = new Rider(true);
 
+        r2.setProfile(p2);
+        r3.setProfile(p3);
+        r4.setProfile(p4);
+
         ArrayList<PaymentMethod> pay = new ArrayList<PaymentMethod>();
         pay.add(PaymentMethod.CASH);
         ArrayLift carona = d1.offerLift(1.4f, pay);
@@ -78,7 +82,9 @@ public class Main {
         carona.addRider(r3);
         carona.addRider(r4);
 
-        System.out.println(carona.giveRiderRating(2, p1.getRating()));
+        boolean var = carona.giveRiderRating(2, p1.getRating());
+
+        System.out.println(var);
         System.out.println(carona.giveRiderRating(3, p1.getRating()));
         System.out.println(carona.giveRiderRating(4, p1.getRating()));
         System.out.println(carona.giveRiderRating(35, p1.getRating()));
