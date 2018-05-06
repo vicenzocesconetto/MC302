@@ -1,1 +1,2 @@
-# MC302
+# MC302 - Object Oriented Programming
+
