@@ -173,11 +173,11 @@ public class Lift {
     }
 
     public boolean giveDriverRating(float rating) {
-        if(driver != null) {
-            driver.setRating(rating);
-            return true;
-        } else
-        return false;
+        if(driver == null)
+            return false;
+        
+        driver.setRating(rating);
+        return true;
     }
 
     @Override
