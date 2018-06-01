@@ -12,6 +12,11 @@ public class GroupUser {
         id = idGenerator++;
     }
 
+    public GroupUser(User user) {
+        this();
+        this.user = user;
+    }
+
     public int getId() {
         return id;
     }

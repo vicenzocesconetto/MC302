@@ -4,13 +4,16 @@ public class LiftRider {
     private float rating;
 
     public LiftRider() {
+        rating = 5;
     }
 
     public LiftRider(Rider rider) {
+        this();
         this.rider = rider;
     }
 
     public LiftRider(Rider rider, Lift lift) {
+        this();
         this.rider = rider;
         this.lift = lift;
     }

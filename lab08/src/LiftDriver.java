@@ -4,13 +4,16 @@ public class LiftDriver {
     private float rating;
 
     public LiftDriver() {
+        rating = 5;
     }
 
     public LiftDriver(Driver driver) {
+        this();
         this.driver = driver;
     }
 
     public LiftDriver(Lift lift, Driver driver) {
+        this();
         this.lift = lift;
         this.driver = driver;
     }

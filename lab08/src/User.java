@@ -19,18 +19,27 @@ public class User {
         groups = new ArrayList<GroupUser>();
     }
 
-    public User(String n) {
+    public User(String name) {
         this();
-        name = n;
+        this.name = name;
     }
 
+    public void createPublicGroup() {
+        PublicGroup p = new PublicGroup(this);
+    }
+
+    public void createPrivateGroup() {
+        PrivateGroup p = new PrivateGroup(this);
+    }
 
     void removeGroup(int id) {
         for (GroupUser i: groups) {
             if(i.getGroup().getId() == id) {
-                i.getGroup().getMembers().remove(i);
-                groups.remove(i);
-                return;
+                if ( i.getGroup() instanceof PrivateGroup && !(i.getGroup().getOwner().equals(this)) ) {
+                    i.getGroup().getMembers().remove(i);
+                    groups.remove(i);
+                    return;
+                }
             }
         }
     }
@@ -38,9 +47,11 @@ public class User {
     void removeGroup(Group g) {
         for (GroupUser i: groups) {
             if(i.getGroup().equals(g)) {
-                g.getMembers().remove(i);
-                groups.remove(i);
-                return;
+                if( i.getGroup() instanceof PrivateGroup && !(i.getGroup().getOwner().equals(this)) ) {
+                    g.getMembers().remove(i);
+                    groups.remove(i);
+                    return;
+                }
             }
         }
     }
@@ -70,12 +81,24 @@ public class User {
         }
     }
 
-    void addGroup(GroupUser groupUser) {
-        groups.add(groupUser);
+    void addPublicGroup(PublicGroup group) {
+        if(!group.isUserInGroup(this)) {
+            GroupUser groupUser = new GroupUser(this);
+            groupUser.setGroup(group);
+            group.addMember(groupUser);
+            groups.add(groupUser);
+        }
     }
 
-    void removeGroup(GroupUser g) {
-        groups.remove(g);
+    boolean addPrivateGroup(User owner, PrivateGroup group) {
+        if(owner.equals(group.getOwner()) && !group.isUserInGroup(this)){
+            GroupUser groupUser = new GroupUser(this);
+            groupUser.setGroup(group);
+            groups.add(groupUser);
+            group.addMember(groupUser);
+            return true;
+        }
+        return false;
     }
 
     public int getId() {

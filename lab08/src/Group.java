@@ -25,25 +25,19 @@ public abstract class Group {
     }
 
     void changeOwner(User old, User newOwner) {
-        GroupUser newGroupUser = new GroupUser();
+        if(owner.equals(old)) owner = newOwner;
+    }
 
-        newGroupUser.setUser(newOwner);
-        newGroupUser.setGroup(this);
-
-        members.add(newGroupUser);
-
-        newOwner.addGroup(newGroupUser);
-
-        ArrayList<GroupUser> search = old.getGroups();
-        GroupUser find = null;
-        for (GroupUser i : search) {
-            if(i.getUser().equals(old)) {
-                find = i;
-                break;
-            }
+    public boolean isUserInGroup(User user) {
+        for(GroupUser groupUser: members) {
+            if(groupUser.getUser() == user)
+                return true;
         }
-        old.removeGroup(find);
-        members.remove(find);
+        return false;
+    }
+
+    public boolean isUserInGroup(GroupUser gp) {
+        return members.contains(gp);
     }
 
     abstract void addMember(User user);

@@ -10,6 +10,11 @@ public class PrivateGroup extends Group {
         lifts = new ArrayList<PrivateLift>();
     }
 
+    public PrivateGroup(User firstOwner) {
+        super(firstOwner);
+        addMember(firstOwner);
+    }
+
     public PrivateGroup(PrivateLift p) {
         this();
         lifts.add(p);
@@ -17,10 +22,6 @@ public class PrivateGroup extends Group {
 
     void addLift(PrivateLift p) {
         lifts.add(p);
-    }
-
-    public PrivateGroup(User firstOwner) {
-        super(firstOwner);
     }
 
     public ArrayList<PrivateLift> getLifts() {
@@ -33,11 +34,15 @@ public class PrivateGroup extends Group {
 
     @Override
     void addMember(User user) {
-        GroupUser gu = new GroupUser();
-        gu.setUser(user);
-        user.addGroup(gu);
-        getMembers().add(gu);
-        gu.setGroup(this);
+        if(!isUserInGroup(user)) {
+
+        }
+    }
+
+    void addMember(GroupUser gp) {
+        if(!isUserInGroup(gp.getUser())) {
+            getMembers().add(gp);
+        }
     }
 
     @Override

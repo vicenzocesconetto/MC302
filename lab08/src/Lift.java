@@ -166,6 +166,7 @@ public class Lift {
         for(LiftRider liftRider : riders) {
             if(liftRider.getRider().getProfile().getUser().getId() == userId) {
                 liftRider.setRating(rating);
+                liftRider.getRider().getProfile().calculateRating();
                 return true;
             }
         }
@@ -177,6 +178,7 @@ public class Lift {
             return false;
 
         driver.setRating(rating);
+        driver.getDriver().getDriverProfile().calculateRating();
         return true;
     }
 

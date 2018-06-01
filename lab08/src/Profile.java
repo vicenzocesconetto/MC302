@@ -73,9 +73,42 @@ public class Profile {
     }
 
     public float getRating() {
-        if(riderProfile != null && riderProfile.getLifts()) {
-            
+        return rating;
+    }
+
+    public void calculateRating() {
+        float finalRating = 0;
+        float riderRating = -1;
+        int amountOfRiderRatings = 0;
+        float driverRating = -1;
+        int amountOfDriverRatings = 0;
+
+        if(riderProfile != null && riderProfile.getLifts() != null) {
+            riderRating = 0;
+            for (LiftRider liftRider: riderProfile.getLifts()) {
+                riderRating += liftRider.getRating();
+                ++amountOfRiderRatings;
+            }
         }
+
+        if(driverProfile != null && driverProfile.getLifts() != null) {
+            driverRating = 0;
+            for(LiftDriver liftDriver: driverProfile.getLifts()) {
+                driverRating += liftDriver.getRating();
+                ++amountOfDriverRatings;
+            }
+        }
+
+        if(riderRating != -1 && driverRating != -1)
+            finalRating = (riderRating + driverRating)/(amountOfDriverRatings + amountOfRiderRatings);
+        else if (riderRating != -1)
+            finalRating = riderRating/amountOfRiderRatings;
+        else if (driverRating != -1)
+            finalRating = driverRating/amountOfDriverRatings;
+        else
+            return;
+
+        rating = finalRating;
     }
 
     public void setRating(float rating) {
