@@ -20,7 +20,9 @@ public class PublicLift extends Lift {
     }
 
     public boolean addGroup(PublicGroup pb) {
-        return groups.add(pb);
+        if(pb.isUserInGroup(getDriver().getDriver().getDriverProfile().getUser()))
+            return groups.add(pb) && pb.getLifts().add(this);
+        return false;
     }
 
     @Override
