@@ -3,10 +3,6 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-//        Group teste = new PublicGroup();
-//        teste.dynamicTest();
-//        ((PublicGroup) teste).dynamicTest();
-
         System.out.println("start main");
 
         Lift[] caronas = new Lift[2];
