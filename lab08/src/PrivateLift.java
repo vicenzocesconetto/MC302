@@ -15,8 +15,12 @@ public class PrivateLift extends Lift {
         groups = new ArrayList<PrivateGroup>();
     }
 
-    public boolean addRider(Rider r) {
-        return getRiders().add(new LiftRider(r, this));
+    public boolean addRider(Rider rider) {
+        for(PrivateGroup pv: groups) {
+            if(pv.isUserInGroup(rider.getProfile().getUser()))
+                return getRiders().add(new LiftRider(rider, this));
+        }
+        return false;
     }
 
     public boolean addGroup(PrivateGroup pv) {

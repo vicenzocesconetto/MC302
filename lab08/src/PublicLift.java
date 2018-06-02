@@ -15,8 +15,16 @@ public class PublicLift extends Lift {
             groups = new ArrayList<PublicGroup>();
     }
 
-    public boolean addRider(Rider r) {
-        return getRiders().add(new LiftRider(r, this));
+    public boolean addRider(Rider rider) {
+        if(groups.isEmpty()) {
+            return getRiders().add(new LiftRider(rider, this));
+        } else {
+            for(PublicGroup pb: groups) {
+                if(pb.isUserInGroup(rider.getProfile().getUser()))
+                    return getRiders().add(new LiftRider(rider, this));
+            }
+            return false;
+        }
     }
 
     public boolean addGroup(PublicGroup pb) {
