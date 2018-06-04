@@ -90,11 +90,11 @@ public class User {
         }
     }
 
-    void addPrivateGroup(User owner, PrivateGroup group) throws SystemLiftException {
-        if(owner.equals(group.getOwner()) && !group.isUserInGroup(this)){
-            GroupUser groupUser = new GroupUser(this);
+    void addUserToPrivateGroup(User user, PrivateGroup group) throws SystemLiftException {
+        if(this.equals(group.getOwner()) && !group.isUserInGroup(user)){
+            GroupUser groupUser = new GroupUser(user);
             groupUser.setGroup(group);
-            groups.add(groupUser);
+            user.getGroups().add(groupUser);
             group.addMember(groupUser);
         } else {
             throw new SystemLiftException();
