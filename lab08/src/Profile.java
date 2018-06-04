@@ -1,4 +1,4 @@
-public class Profile {
+public class Profile implements Comparable<Profile> {
 
     private char sex;
     private final String birthday;
@@ -141,6 +141,15 @@ public class Profile {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int compareTo(Profile o) {
+        if(rating > o.getRating())
+            return 1;
+        else if (rating == o.getRating())
+            return 0;
+        else
+            return -1;
     }
 
     @Override
