@@ -12,10 +12,6 @@ public class Profile {
     private Driver driverProfile;
     private User user;
 
-//    public Profile(String bday) {
-//        sex ='M';
-//        this.birthday = bday;
-//    }
 
     public Profile(char sex, String birthday, String city, String state, String telephone, boolean smoker, int habilitationTime) {
         rating = 5;
