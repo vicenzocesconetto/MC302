@@ -95,5 +95,8 @@ public class Main {
         ArrayList<PaymentMethod> now = new ArrayList<PaymentMethod>();
         now.add(PaymentMethod.CASH);
         gpu.addLift(u3.getProfile().getDriverProfile().offerPublicLift(12.03f, now));
+
+        u0.removeGroup(gpu); // Foi dito que o dono de um grupo privado nao podia sair, mas
+        System.out.println(gpu);
     }
 }

@@ -35,11 +35,13 @@ public class User {
     void removeGroup(int id) {
         for (GroupUser i: groups) {
             if(i.getGroup().getId() == id) {
-                if ( i.getGroup() instanceof PrivateGroup && !(i.getGroup().getOwner().equals(this)) ) {
+                if (i.getGroup() instanceof PublicGroup || (i.getGroup() instanceof PrivateGroup && !(i.getGroup().getOwner().equals(this)))) {
                     i.getGroup().getMembers().remove(i);
                     groups.remove(i);
-                    return;
+                    if(i.getGroup().getOwner().equals(this))
+                        i.getGroup().changeOwner(this, null);
                 }
+                return;
             }
         }
     }
@@ -47,11 +49,13 @@ public class User {
     void removeGroup(Group g) {
         for (GroupUser i: groups) {
             if(i.getGroup().equals(g)) {
-                if( i.getGroup() instanceof PrivateGroup && !(i.getGroup().getOwner().equals(this)) ) {
+                if(i.getGroup() instanceof PublicGroup || (i.getGroup() instanceof PrivateGroup && !(i.getGroup().getOwner().equals(this)))) {
                     g.getMembers().remove(i);
                     groups.remove(i);
-                    return;
+                    if(i.getGroup().getOwner().equals(this))
+                        i.getGroup().changeOwner(this, null);
                 }
+                return;
             }
         }
     }
