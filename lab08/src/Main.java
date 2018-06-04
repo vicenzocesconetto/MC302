@@ -94,6 +94,6 @@ public class Main {
 
         ArrayList<PaymentMethod> now = new ArrayList<PaymentMethod>();
         now.add(PaymentMethod.CASH);
-        u3.getProfile().getDriverProfile().offerLift(12.03f, now);
+        gpu.addLift(u3.getProfile().getDriverProfile().offerPublicLift(12.03f, now));
     }
 }

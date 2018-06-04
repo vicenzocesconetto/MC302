@@ -17,11 +17,22 @@ class Driver {
         driverLicense = "2018";
     }
 
-    public Lift offerLift(float price, ArrayList<PaymentMethod> acceptedPaymentMethods) {
+    public PublicLift offerPublicLift(float price, ArrayList<PaymentMethod> acceptedPaymentMethods) {
         LiftDriver liftDriver = new LiftDriver(this); // instancia a classe associativa CaronaCaronante
-        Lift lift = new Lift(liftDriver); // instancia a classe Carona
+        PublicLift lift = new PublicLift(liftDriver); // instancia a classe Carona
         liftDriver.setLift(lift); // da a carona para a CaronaCaronante
         lift.setPrice(price); // da o preco para a carona
+        lifts.add(liftDriver); // adiciona a classe associativa ao array
+        lift.setAcceptedPaymentMethods(acceptedPaymentMethods); // da as formas de pagamento
+        return lift;
+    }
+
+    public PrivateLift offerPrivateLift(float price, ArrayList<PaymentMethod> acceptedPaymentMethods) {
+        LiftDriver liftDriver = new LiftDriver(this); // instancia a classe associativa CaronaCaronante
+        PrivateLift lift = new PrivateLift(liftDriver); // instancia a classe Carona
+        liftDriver.setLift(lift); // da a carona para a CaronaCaronante
+        lift.setPrice(price); // da o preco para a carona
+        lifts.add(liftDriver); // adiciona a classe associativa ao array
         lift.setAcceptedPaymentMethods(acceptedPaymentMethods); // da as formas de pagamento
         return lift;
     }
