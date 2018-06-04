@@ -90,15 +90,15 @@ public class User {
         }
     }
 
-    boolean addPrivateGroup(User owner, PrivateGroup group) {
+    void addPrivateGroup(User owner, PrivateGroup group) throws SystemLiftException {
         if(owner.equals(group.getOwner()) && !group.isUserInGroup(this)){
             GroupUser groupUser = new GroupUser(this);
             groupUser.setGroup(group);
             groups.add(groupUser);
             group.addMember(groupUser);
-            return true;
+        } else {
+            throw new SystemLiftException();
         }
-        return false;
     }
 
     public int getId() {
