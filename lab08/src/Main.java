@@ -100,9 +100,14 @@ public class Main {
         entao quer dizer que dono de grupo privado nao pode sair, mas publico pode*/
         System.out.println(gpu);
 
-        u2.getProfile().getDriverProfile().offerPrivateLift(7.8f, now).addGroup(ec017);
+        PrivateLift l = u4.getProfile().getDriverProfile().offerPrivateLift(7.8f, now);
+        l.addGroup(ec017);
 
-        u4.getProfile().getDriverProfile().offerPrivateLift(7.8f, now).addGroup(ec017);
+        l = u2.getProfile().getDriverProfile().offerPrivateLift(7.8f, now);
+        l.addGroup(ec017);
+
+        u0.getProfile().getRiderProfile().askLift(l);
+        u1.getProfile().getRiderProfile().askLift(l);
 
     }
 }
