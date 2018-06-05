@@ -26,15 +26,15 @@ class Rider {
         return lift.addRider(this);
     }
 
-    public boolean giveLiftRating(Lift lift, float rating) {
-        for (LiftRider i: lifts) {
-            if(i.getLift().equals(lift)) {
-                i.setRating(rating);
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean rateLift(Lift lift, float rating) {
+//        for (LiftRider i: lifts) {
+//            if(i.getLift().equals(lift)) {
+//                i.setRating(rating);
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     public String getCreditCard() {
         return creditCard;

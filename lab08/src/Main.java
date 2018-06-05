@@ -97,7 +97,8 @@ public class Main {
         u3.getProfile().getDriverProfile().offerPublicLift(12.03f, now).addGroup(gpu);
 
         u0.removeGroup(gpu); /*"Garanta que o método removerGrupo só remova o usuário do grupo caso ele não seja o dono (no caso de ser um grupo privado)."
-        entao quer dizer que dono de grupo privado nao pode sair, mas publico pode*/
+        entao quer dizer que dono de grupo privado nao pode sair, mas o dono do grupo publico pode*/
+//        O diagrama UML diz que removeGroup eh para ser void
         System.out.println(gpu);
 
         PrivateLift l = u4.getProfile().getDriverProfile().offerPrivateLift(7.8f, now);
@@ -106,8 +107,24 @@ public class Main {
         l = u2.getProfile().getDriverProfile().offerPrivateLift(7.8f, now);
         l.addGroup(ec017);
 
-        u0.getProfile().getRiderProfile().askLift(l);
-        u1.getProfile().getRiderProfile().askLift(l);
+        System.out.println(u0.getProfile().getRiderProfile().askLift(l)); // deve retornar true
+        System.out.println(u1.getProfile().getRiderProfile().askLift(l)); // deve retornar true
+        System.out.println(u3.getProfile().getRiderProfile().askLift(l)); // deve retornar false
+
+        /*12*/ ArrayList<User> list = new ArrayList<User>();
+        list.add(u0);
+        list.add(u1);
+        list.add(u2);
+
+
+        l.rateDriver(u0.getId(), 4.4f);
+        l.rateDriver(u1.getId(), 4.6f);
+
+        l.rateRiders(4.5f);
+
+//        System.out.println(u0.getProfile());
+
+
 
     }
 }

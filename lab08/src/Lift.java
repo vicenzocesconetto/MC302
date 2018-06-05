@@ -162,24 +162,29 @@ public class Lift {
         this.acceptedPaymentMethods = acceptedPaymentMethods;
     }
 
-    public boolean giveRiderRating(int userId, float rating) {
-        for(LiftRider liftRider : riders) {
-            if(liftRider.getRider().getProfile().getUser().getId() == userId) {
-                liftRider.setRating(rating);
-                liftRider.getRider().getProfile().calculateRating();
-                return true;
+    public boolean rateDriver(int userId, float rating) {
+        if(driver != null && driver.getDriver() != null) {
+            for (LiftRider liftRider : riders) {
+                if (liftRider.getRider().getProfile().getUser().getId() == userId) {
+                    driver.setRating(rating);
+                    driver.getDriver().getDriverProfile().calculateRating();
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public boolean giveDriverRating(float rating) {
-        if(driver == null)
+    public boolean rateRiders(float rating) {
+        if(!riders.isEmpty()) {
+            for (LiftRider liftRider : riders) {
+                liftRider.setRating(rating);
+                liftRider.getRider().getProfile().calculateRating();
+            }
+            return true;
+        } else
             return false;
 
-        driver.setRating(rating);
-        driver.getDriver().getDriverProfile().calculateRating();
-        return true;
     }
 
     @Override

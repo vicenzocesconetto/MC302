@@ -74,8 +74,10 @@ public class Profile implements Comparable<Profile> {
 
     public void calculateRating() {
         float finalRating = 0;
+
         float riderRating = -1;
         int amountOfRiderRatings = 0;
+
         float driverRating = -1;
         int amountOfDriverRatings = 0;
 
