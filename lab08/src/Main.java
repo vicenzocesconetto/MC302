@@ -94,9 +94,15 @@ public class Main {
 
         ArrayList<PaymentMethod> now = new ArrayList<PaymentMethod>();
         now.add(PaymentMethod.CASH);
-        gpu.addLift(u3.getProfile().getDriverProfile().offerPublicLift(12.03f, now));
+        u3.getProfile().getDriverProfile().offerPublicLift(12.03f, now).addGroup(gpu);
 
-        u0.removeGroup(gpu); // Foi dito que o dono de um grupo privado nao podia sair, mas
+        u0.removeGroup(gpu); /*"Garanta que o método removerGrupo só remova o usuário do grupo caso ele não seja o dono (no caso de ser um grupo privado)."
+        entao quer dizer que dono de grupo privado nao pode sair, mas publico pode*/
         System.out.println(gpu);
+
+        u2.getProfile().getDriverProfile().offerPrivateLift(7.8f, now).addGroup(ec017);
+
+        u4.getProfile().getDriverProfile().offerPrivateLift(7.8f, now).addGroup(ec017);
+
     }
 }

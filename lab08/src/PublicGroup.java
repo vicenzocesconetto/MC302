@@ -20,10 +20,6 @@ public class PublicGroup extends Group {
         lifts.add(p);
     }
 
-    void addLift(PublicLift p) {
-        lifts.add(p);
-    }
-
     public ArrayList<PublicLift> getLifts() {
         return lifts;
     }

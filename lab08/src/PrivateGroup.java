@@ -16,10 +16,6 @@ public class PrivateGroup extends Group {
         lifts.add(p);
     }
 
-    void addLift(PrivateLift p) {
-        lifts.add(p);
-    }
-
     public ArrayList<PrivateLift> getLifts() {
         return lifts;
     }

@@ -23,13 +23,7 @@ class Rider {
     }
 
     public boolean askLift(Lift lift) {
-//        if(lift == null) {
-//            System.out.println("lift is null");
-//            return false;
-//        }
-        LiftRider lr = new LiftRider(this, lift);
-        lift.addRider(this);
-        return lifts.add(lr);
+        return lift.addRider(this);
     }
 
     public boolean giveLiftRating(Lift lift, float rating) {
