@@ -111,10 +111,10 @@ public class Main {
         System.out.println(u1.getProfile().getRiderProfile().askLift(l)); // deve retornar true
         System.out.println(u3.getProfile().getRiderProfile().askLift(l)); // deve retornar false
 
-        /*12*/ ArrayList<User> list = new ArrayList<User>();
-        list.add(u0);
-        list.add(u1);
-        list.add(u2);
+        /*12*/ ArrayList<Profile> list = new ArrayList<Profile>();
+        list.add(u0.getProfile());
+        list.add(u1.getProfile());
+        list.add(u2.getProfile());
 
 
         l.rateDriver(u0.getId(), 4.4f);
@@ -122,7 +122,51 @@ public class Main {
 
         l.rateRiders(4.5f);
 
-//        System.out.println(u0.getProfile());
+        System.out.println(u0.getProfile().getRating());
+        System.out.println(u1.getProfile().getRating());
+        System.out.println(u2.getProfile().getRating());
+
+        list.sort(Profile::compareTo);
+
+        System.out.println(list.toString()); // ver se esta mesmo ordenado
+
+
+        System.out.println(u0);
+        System.out.println(u1);
+        System.out.println(u2);
+        System.out.println(u3);
+        System.out.println(u4);
+
+        System.out.println(p0);
+        System.out.println(p1);
+        System.out.println(p2);
+        System.out.println(p3);
+        System.out.println(p4);
+
+        System.out.println(d0);
+        System.out.println(d1);
+        System.out.println(d2);
+        System.out.println(d3);
+        System.out.println(d4);
+
+
+        System.out.println(r0);
+        System.out.println(r1);
+        System.out.println(r2);
+        System.out.println(r3);
+        System.out.println(r4);
+
+        System.out.println(gpu);
+        System.out.println(ec017);
+        System.out.println(l);
+
+
+
+
+
+
+
+
 
 
 
