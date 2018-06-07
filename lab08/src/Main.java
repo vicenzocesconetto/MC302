@@ -52,7 +52,10 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        User u0 = new User();
+
+        User u = new User("Igor");
+        u.saveToFile();
+        /*User u0 = new User();
         Profile p0 = new Profile('F', "12/54/987", "Palo Alto", "CA", "7563243", false, 3);
         Driver d0 = new Driver();
         Rider r0 = new Rider();
@@ -146,8 +149,8 @@ public class Main {
         now.add(PaymentMethod.CASH);
         u3.getProfile().getDriverProfile().offerPublicLift(12.03f, now).addGroup(gpu);
 
-        u0.removeGroup(gpu); /*"Garanta que o método removerGrupo só remova o usuário do grupo caso ele não seja o dono (no caso de ser um grupo privado)."
-        entao quer dizer que dono de grupo privado nao pode sair, mas o dono do grupo publico pode*/
+        u0.removeGroup(gpu); *//*"Garanta que o método removerGrupo só remova o usuário do grupo caso ele não seja o dono (no caso de ser um grupo privado)."
+        entao quer dizer que dono de grupo privado nao pode sair, mas o dono do grupo publico pode*//*
 //        O diagrama UML diz que removeGroup eh para ser void
         System.out.println(gpu);
 
@@ -161,7 +164,7 @@ public class Main {
         System.out.println(u1.getProfile().getRiderProfile().askLift(l)); // deve retornar true
         System.out.println(u3.getProfile().getRiderProfile().askLift(l)); // deve retornar false
 
-        /*12*/ ArrayList<Profile> list = new ArrayList<Profile>();
+        *//*12*//* ArrayList<Profile> list = new ArrayList<Profile>();
         list.add(u0.getProfile());
         list.add(u1.getProfile());
         list.add(u2.getProfile());
@@ -208,17 +211,10 @@ public class Main {
 
         System.out.println(gpu);
         System.out.println(ec017);
-        System.out.println(l);
+        System.out.println(l);*/
 
 
 // 16. Salve todos os dados no(s) arquivo(s) apropriado(s).
-
-
-
-
-
-
-
 
     }
 }

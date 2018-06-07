@@ -1,6 +1,7 @@
+import java.io.*;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Savable{
     private int id;
     private String name;
     private String email;
@@ -9,6 +10,7 @@ public class User {
     private ArrayList<GroupUser> groups;
     private Profile profile;
     private static int idGenerator;
+
 
     static {
         idGenerator = 0;
@@ -169,6 +171,62 @@ public class User {
         User.idGenerator = idGenerator;
     }
 
+    public void saveToFile() {
+        if(!(new File("/Objects").exists()))
+            new File("/Objects").mkdirs();
+
+        File outPutFile = new File(super.toString());
+        DataOutputStream dataOutputStream = null;
+
+        try {
+
+            dataOutputStream = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(super.toString())));
+
+            try{
+                dataOutputStream.writeInt(id);
+                dataOutputStream.writeChar((int)'\n');
+
+                if(name != null) {
+                    dataOutputStream.writeChars(name);
+                    dataOutputStream.writeChar((int) '\n');
+                }
+
+                if(email != null) {
+                    dataOutputStream.writeChars(email);
+                    dataOutputStream.writeChar((int)'\n');
+                }
+
+                if(password != null) {
+                    dataOutputStream.writeChars(password);
+                    dataOutputStream.writeChar((int)'\n');
+                }
+
+                dataOutputStream.writeBoolean(status);
+                dataOutputStream.writeChar((int)'\n');
+
+//                Save groups and Profile
+
+                dataOutputStream.writeInt(idGenerator);
+                dataOutputStream.writeChar((int)'\n');
+
+                dataOutputStream.flush();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Could not write values");
+            }
+
+        } catch (java.io.FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Coud not save object " + super.toString());
+        } finally {
+            try {
+                if(dataOutputStream != null) dataOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public String print() {
         return "User{" +
