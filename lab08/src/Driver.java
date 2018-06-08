@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 class Driver implements Savable{
@@ -15,6 +19,7 @@ class Driver implements Savable{
 
     public Driver() {
         driverLicense = "2018";
+        lifts = new ArrayList<LiftDriver>();
     }
 
     public PublicLift offerPublicLift(float price, ArrayList<PaymentMethod> acceptedPaymentMethods) {
@@ -123,6 +128,84 @@ class Driver implements Savable{
 
     @Override
     public boolean saveToFile() {
+        if(!(new File("Objects/").exists()))
+            new File("Objects/").mkdir();
+
+        if((new File("Objects/" + originalToString()).exists()))
+            return false;
+
+        BufferedWriter outputFile = null;
+
+        try {
+            outputFile = new BufferedWriter(new FileWriter("Objects/" + originalToString()));
+
+            outputFile.write(Integer.toString(habilitationTime));
+            outputFile.newLine();
+
+            if(favoriteMusicGenre != null)
+                outputFile.write(favoriteMusicGenre);
+            else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+            if(licensePlate != null)
+                outputFile.write(licensePlate);
+            else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+            if(driverLicense != null)
+                outputFile.write(driverLicense);
+            else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+            if(vehicleBrand != null)
+                outputFile.write(vehicleBrand);
+            else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+            if(vehicleModel != null)
+                outputFile.write(vehicleBrand);
+            else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+            outputFile.write(Integer.toString(seatsAvailable));
+            outputFile.newLine();
+
+            if(driverProfile != null) {
+                driverProfile.saveToFile();
+                outputFile.write(driverProfile.originalToString());
+            } else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+            outputFile.flush(); // flushing it before closing, just to be safe.
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Could not save " + originalToString());
+            return false;
+        } finally {
+
+            try {
+                if (outputFile != null)
+                    outputFile.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("This is a glitch in the Matrix: Driver.saveToFile()");
+            }
+        }
+
         return true;
     }
 

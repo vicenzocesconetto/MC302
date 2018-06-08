@@ -35,8 +35,11 @@ public class PrivateGroup extends Group {
 
     @Override
     void addMember(User user) {
-        if(!isUserInGroup(user)) {
-
+        try {
+            user.addUserToPrivateGroup(user, this);
+        } catch (SystemLiftException e) {
+            e.printStackTrace();
+            System.out.println("Could not add user: " + user);
         }
     }
 

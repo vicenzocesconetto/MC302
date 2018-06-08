@@ -71,8 +71,8 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println(new Driver().saveToFile());
-        /*User u0 = new User();
+
+        User u0 = new User();
         Profile p0 = new Profile('F', "12/54/987", "Palo Alto", "CA", "7563243", false, 3);
         Driver d0 = new Driver();
         Rider r0 = new Rider();
@@ -166,39 +166,43 @@ public class Main {
         now.add(PaymentMethod.CASH);
         u3.getProfile().getDriverProfile().offerPublicLift(12.03f, now).addGroup(gpu);
 
-        u0.removeGroup(gpu); *//*"Garanta que o método removerGrupo só remova o usuário do grupo caso ele não seja o dono (no caso de ser um grupo privado)."
-        entao quer dizer que dono de grupo privado nao pode sair, mas o dono do grupo publico pode*//*
+        u0.removeGroup(gpu);
 //        O diagrama UML diz que removeGroup eh para ser void
         System.out.println(gpu);
 
-        PrivateLift l = u4.getProfile().getDriverProfile().offerPrivateLift(7.8f, now);
-        l.addGroup(ec017);
+        PrivateLift carona = u4.getProfile().getDriverProfile().offerPrivateLift(7.8f, now);
+        carona.addGroup(ec017);
 
-        l = u2.getProfile().getDriverProfile().offerPrivateLift(7.8f, now);
-        l.addGroup(ec017);
+        carona = u2.getProfile().getDriverProfile().offerPrivateLift(7.8f, now);
+        carona.addGroup(ec017);
 
-        System.out.println(u0.getProfile().getRiderProfile().askLift(l)); // deve retornar true
-        System.out.println(u1.getProfile().getRiderProfile().askLift(l)); // deve retornar true
-        System.out.println(u3.getProfile().getRiderProfile().askLift(l)); // deve retornar false
+        System.out.println(u0.getProfile().getRiderProfile().askLift(carona)); // deve retornar true
+        System.out.println(u1.getProfile().getRiderProfile().askLift(carona)); // deve retornar true
+        System.out.println(u3.getProfile().getRiderProfile().askLift(carona)); // deve retornar false
 
-        *//*12*//* ArrayList<Profile> list = new ArrayList<Profile>();
-        list.add(u0.getProfile());
+        /*12*/ ArrayList<Profile> list = new ArrayList<Profile>();
         list.add(u1.getProfile());
         list.add(u2.getProfile());
+        list.add(u0.getProfile());
 
 
-        l.rateDriver(u0.getId(), 4.4f);
-        l.rateDriver(u1.getId(), 4.6f);
+        carona.rateDriver(u0.getId(), 4.4f);
+        carona.rateDriver(u1.getId(), 4.6f);
 
-        l.rateRiders(4.5f);
+        carona.rateRiders(4.5f);
 
         System.out.println(u0.getProfile().getRating());
         System.out.println(u1.getProfile().getRating());
         System.out.println(u2.getProfile().getRating());
 
+
+        System.out.println("\nThis is the unsorted array");
+        System.out.println(list.toString());
+
         list.sort(Profile::compareTo);
 
-        System.out.println(list.toString()); // ver se esta mesmo ordenado
+        System.out.println("\nSorted array");
+        System.out.println(list.toString());
 
 
         System.out.println(u0);
@@ -228,10 +232,36 @@ public class Main {
 
         System.out.println(gpu);
         System.out.println(ec017);
-        System.out.println(l);*/
+        System.out.println(carona);
 
 
 // 16. Salve todos os dados no(s) arquivo(s) apropriado(s).
-
+        u0.saveToFile();
+        u1.saveToFile();
+        u2.saveToFile();
+        u3.saveToFile();
+        u4.saveToFile();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

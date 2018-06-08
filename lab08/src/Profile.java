@@ -86,7 +86,7 @@ public class Profile implements Comparable<Profile>, Savable {
         float driverRating = -1;
         int amountOfDriverRatings = 0;
 
-        if(riderProfile != null && riderProfile.getLifts() != null) {
+        if(riderProfile != null && riderProfile.getLifts() != null && !riderProfile.getLifts().isEmpty()) {
             riderRating = 0;
             for (LiftRider liftRider: riderProfile.getLifts()) {
                 riderRating += liftRider.getRating();
@@ -94,7 +94,7 @@ public class Profile implements Comparable<Profile>, Savable {
             }
         }
 
-        if(driverProfile != null && driverProfile.getLifts() != null) {
+        if(driverProfile != null && driverProfile.getLifts() != null && !driverProfile.getLifts().isEmpty()) {
             driverRating = 0;
             for(LiftDriver liftDriver: driverProfile.getLifts()) {
                 driverRating += liftDriver.getRating();
@@ -177,19 +177,35 @@ public class Profile implements Comparable<Profile>, Savable {
             outputFile.newLine();
 
             // Saving the birthday
-            outputFile.write(birthday);
+            if(birthday != null)
+                outputFile.write(birthday);
+            else
+                outputFile.write("null");
+
             outputFile.newLine();
 
             // Saving the city
-            outputFile.write(city);
+            if(city != null)
+                outputFile.write(city);
+            else
+                outputFile.write("null");
+
             outputFile.newLine();
 
             // Saving the state
-            outputFile.write(state);
+            if(state != null)
+                outputFile.write(state);
+            else
+                outputFile.write("null");
+
             outputFile.newLine();
 
             // Saving the telephone
-            outputFile.write(telephone);
+            if(telephone != null)
+                outputFile.write(telephone);
+            else
+                outputFile.write("null");
+
             outputFile.newLine();
 
             // Saving the smoker status
@@ -205,20 +221,29 @@ public class Profile implements Comparable<Profile>, Savable {
             outputFile.newLine();
 
             // Saving the rider
-            outputFile.write(riderProfile.originalToString());
+            if(riderProfile != null) {
+                riderProfile.saveToFile();
+                outputFile.write(riderProfile.originalToString());
+            } else
+                outputFile.write("null");
+
             outputFile.newLine();
 
             // Saving the driver
-            if(driverProfile != null)
+            if(driverProfile != null) {
+                driverProfile.saveToFile();
                 outputFile.write(driverProfile.originalToString());
+            }
             else
                 outputFile.write("null");
 
             outputFile.newLine();
 
             // Saving the user
-            if(user != null)
+            if(user != null) {
+                user.saveToFile();
                 outputFile.write(user.originalToString());
+            }
             else
                 outputFile.write("null");
 
