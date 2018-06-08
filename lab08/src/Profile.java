@@ -209,11 +209,19 @@ public class Profile implements Comparable<Profile>, Savable {
             outputFile.newLine();
 
             // Saving the driver
-            outputFile.write(driverProfile.originalToString());
+            if(driverProfile != null)
+                outputFile.write(driverProfile.originalToString());
+            else
+                outputFile.write("null");
+
             outputFile.newLine();
 
             // Saving the user
-            outputFile.write(user.originalToString());
+            if(user != null)
+                outputFile.write(user.originalToString());
+            else
+                outputFile.write("null");
+
             outputFile.newLine();
 
             outputFile.flush(); // flushing it before closing, just to be safe.
