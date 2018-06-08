@@ -1,4 +1,6 @@
 public interface Savable {
 
-    public void saveToFile();
+    public boolean saveToFile();
+
+    public String superToString();
 }

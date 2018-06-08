@@ -1,4 +1,9 @@
-public class Profile implements Comparable<Profile> {
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Profile implements Comparable<Profile>, Savable {
 
     private char sex;
     private final String birthday;
@@ -155,8 +160,75 @@ public class Profile implements Comparable<Profile> {
     }
 
     @Override
+    public boolean saveToFile() {
+        if(!(new File("Objects").exists()))
+            new File("Objects").mkdir();
+
+        if((new File("Objects/" + super.toString()).exists()))
+            return false;
+
+        BufferedWriter outputFile = null;
+
+        try {
+            outputFile = new BufferedWriter(new FileWriter("Objects/" + super.toString()));
+
+            outputFile.write(Character.toString(sex));
+            outputFile.newLine();
+
+            outputFile.write(birthday);
+            outputFile.newLine();
+
+            outputFile.write(city);
+            outputFile.newLine();
+
+            outputFile.write(state);
+            outputFile.newLine();
+
+            outputFile.write(telephone);
+            outputFile.newLine();
+
+            outputFile.write(smoker? "true" : "false");
+            outputFile.newLine();
+
+            outputFile.write(Integer.toString(habilitationTime));
+            outputFile.newLine();
+
+            outputFile.write(Float.toString(rating));
+            outputFile.newLine();
+
+            outputFile.write(riderProfile.superToString());
+            outputFile.newLine();
+
+            outputFile.write(driverProfile.superToString());
+            outputFile.newLine();
+
+            outputFile.write(user.superToString());
+            outputFile.newLine();
+
+            outputFile.flush(); // flush it before ending, just to be safe.
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Could not save " + super.toString());
+
+        } finally {
+
+            try {
+                if (outputFile != null) {
+                    outputFile.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("This is a glitch in the Matrix: Profile.saveToFile()");
+            }
+        }
+
+        return true;
+    }
+
+    @Override
     public String toString() {
-   String out = "Profile{" +
+        String out = "Profile{" +
                 "sex=" + sex +
                 ", birthday='" + birthday + '\'' +
                 ", city='" + city + '\'' +
@@ -176,5 +248,9 @@ public class Profile implements Comparable<Profile> {
            }
            out += '}';
             return out;
+    }
+
+    public String superToString() {
+        return super.toString();
     }
 }

@@ -1,4 +1,4 @@
-public class GroupUser {
+public class GroupUser implements Savable{
     private int id;
     private static int idGenerator;
     private User user;
@@ -42,6 +42,11 @@ public class GroupUser {
     }
 
     @Override
+    public boolean saveToFile() {
+        return true;
+    }
+
+    @Override
     public String toString() {
         String out = "GroupUser{" +
                 "id=" + id;
@@ -53,5 +58,9 @@ public class GroupUser {
                 }
                 out += '}';
                 return out;
+    }
+
+    public String superToString() {
+        return super.toString();
     }
 }

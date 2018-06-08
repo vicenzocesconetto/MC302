@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class Driver {
+class Driver implements Savable{
     private int habilitationTime;
     private String favoriteMusicGenre;
     private String licensePlate;
@@ -122,6 +122,11 @@ class Driver {
     }
 
     @Override
+    public boolean saveToFile() {
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "Driver{" +
                 "habilitationTime=" + habilitationTime +
@@ -133,5 +138,10 @@ class Driver {
                 ", seatsAvailable=" + seatsAvailable +
                 ", driverProfile=" + driverProfile +
                 '}';
+    }
+
+    @Override
+    public String superToString() {
+        return super.toString();
     }
 }

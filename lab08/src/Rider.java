@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class Rider {
+class Rider implements Savable{
 
     private String creditCard;
     private boolean payWithCash;
@@ -81,6 +81,11 @@ class Rider {
     }
 
     @Override
+    public boolean saveToFile() {
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "Rider{" +
                 "creditCard='" + creditCard + '\'' +
@@ -88,5 +93,10 @@ class Rider {
                 ", lifts=" + lifts +
                 ", profile=" + profile +
                 '}';
+    }
+
+    @Override
+    public String superToString() {
+        return super.toString();
     }
 }

@@ -171,61 +171,95 @@ public class User implements Savable{
         User.idGenerator = idGenerator;
     }
 
-    public void saveToFile() {
-        if(!(new File("/Objects").exists()))
-            new File("/Objects").mkdirs();
+    @Override
+    public boolean saveToFile() {
+        if(!(new File("Objects").exists()))
+            new File("Objects").mkdir();
 
-        File outPutFile = new File(super.toString());
-        DataOutputStream dataOutputStream = null;
+        if((new File("Objects/" + super.toString()).exists()))
+            return false;
+
+        BufferedWriter outputFile = null;
 
         try {
+            outputFile = new BufferedWriter(new FileWriter("Objects/" + super.toString()));
 
-            dataOutputStream = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(super.toString())));
+//Saving the id
+            outputFile.write(Integer.toString(id));
+            outputFile.newLine();
 
-            try{
-                dataOutputStream.writeInt(id);
-                dataOutputStream.writeChar((int)'\n');
+// Saving the name
+            if(name != null)
+                outputFile.write(name);
+            else
+                outputFile.write("null");
 
-                if(name != null) {
-                    dataOutputStream.writeChars(name);
-                    dataOutputStream.writeChar((int) '\n');
+            outputFile.newLine();
+
+// Saving the email
+            if(email != null)
+                outputFile.write(email);
+            else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+// Saving the password
+            if(password != null)
+                outputFile.write(password);
+            else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+// Saving the status
+            outputFile.write(status ? "true" : "false");
+            outputFile.newLine();
+
+// Saving the groups arraylist
+            if(groups != null && !groups.isEmpty()) {
+                for(GroupUser groupUser: groups) {
+                    groupUser.saveToFile();
+                    outputFile.write(groupUser.superToString() + "|");
                 }
+            } else
+                outputFile.write("null");
 
-                if(email != null) {
-                    dataOutputStream.writeChars(email);
-                    dataOutputStream.writeChar((int)'\n');
-                }
+            outputFile.newLine();
 
-                if(password != null) {
-                    dataOutputStream.writeChars(password);
-                    dataOutputStream.writeChar((int)'\n');
-                }
-
-                dataOutputStream.writeBoolean(status);
-                dataOutputStream.writeChar((int)'\n');
-
-//                Save groups and Profile
-
-                dataOutputStream.writeInt(idGenerator);
-                dataOutputStream.writeChar((int)'\n');
-
-                dataOutputStream.flush();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("Could not write values");
+// Saving the profile
+            if(profile != null) {
+                profile.saveToFile();
+                outputFile.write(profile.superToString());
             }
+            else
+                outputFile.write("null");
 
-        } catch (java.io.FileNotFoundException e) {
+            outputFile.newLine();
+
+// Saving the idGenerator: I know it's a static int and all Users will, supposedly, have the same; but if they don't we'll get the greater one
+            outputFile.write(Integer.toString(idGenerator));
+            outputFile.newLine();
+
+            outputFile.flush(); // flush it before ending, just to be safe.
+
+        } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Coud not save object " + super.toString());
+            System.out.println("Could not save " + super.toString());
+
         } finally {
+
             try {
-                if(dataOutputStream != null) dataOutputStream.close();
+                if (outputFile != null) {
+                    outputFile.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
+                System.out.println("This is a glitch in the Matrix: User.saveToFile()");
             }
         }
+
+        return true;
     }
 
     public String print() {
@@ -249,5 +283,9 @@ public class User implements Savable{
                 ", groups=" + groups +
                 ", profile=" + profile +
                 '}';
+    }
+
+    public String superToString() {
+        return super.toString();
     }
 }
