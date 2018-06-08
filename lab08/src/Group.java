@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class Group implements Savable{
@@ -88,7 +92,81 @@ public abstract class Group implements Savable{
 
     @Override
     public boolean saveToFile() {
+        if(!(new File("Objects/").exists()))
+            new File("Objects/").mkdir();
 
+        if((new File("Objects/" + super.toString()).exists()))
+            return false;
+
+        BufferedWriter outputFile = null;
+
+        try {
+            outputFile = new BufferedWriter(new FileWriter("Objects/" + super.toString()));
+
+            // Saving the id
+            outputFile.write(Integer.toString(id));
+            outputFile.newLine();
+
+            // Saving the name
+            if(name != null)
+                outputFile.write(name);
+            else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+            // Saving the description
+            if(description != null)
+                outputFile.write(description);
+            else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+            // Saving the owner
+            if(owner != null) {
+                owner.saveToFile();
+                outputFile.write(owner.superToString());
+            } else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+            // Saving the members
+            if(members != null && !members.isEmpty()) {
+                for(GroupUser groupUser : members) {
+                    groupUser.saveToFile();
+                    outputFile.write(groupUser.superToString() + "|");
+                }
+            } else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+
+            // Saving the idGenerator
+            outputFile.write(Integer.toString(idGenerator));
+            outputFile.newLine();
+
+            outputFile.flush(); // flushing it before closing, just to be safe.
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Could not save " + super.toString());
+            return false;
+
+        } finally {
+
+            try {
+                if (outputFile != null)
+                    outputFile.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Glitch in the Matrix: Group.saveToFile()");
+            }
+        }
+
+        return true;
     }
 
     @Override
