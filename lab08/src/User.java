@@ -26,6 +26,19 @@ public class User implements Savable{
         this.name = name;
     }
 
+    public User(String name, String email) {
+        this();
+        this.name = name;
+        this.email = email;
+    }
+
+    public User(String name, String email, String password) {
+        this();
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
     public void createPublicGroup() {
         PublicGroup p = new PublicGroup(this);
     }

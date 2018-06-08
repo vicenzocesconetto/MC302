@@ -71,8 +71,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        User u = new User("Igor");
-        u.saveToFile();
+        Profile
         /*User u0 = new User();
         Profile p0 = new Profile('F', "12/54/987", "Palo Alto", "CA", "7563243", false, 3);
         Driver d0 = new Driver();
