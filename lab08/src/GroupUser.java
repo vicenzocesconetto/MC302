@@ -1,3 +1,5 @@
+import java.io.File;
+
 public class GroupUser implements Savable{
     private int id;
     private static int idGenerator;
@@ -43,6 +45,14 @@ public class GroupUser implements Savable{
 
     @Override
     public boolean saveToFile() {
+        if(!(new File("Objects/").exists()))
+            new File("Objects/").mkdir();
+
+        if(new File("Objects/" + super.toString()).exists())
+            return false;
+
+
+
         return true;
     }
 

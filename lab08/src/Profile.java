@@ -161,8 +161,8 @@ public class Profile implements Comparable<Profile>, Savable {
 
     @Override
     public boolean saveToFile() {
-        if(!(new File("Objects").exists()))
-            new File("Objects").mkdir();
+        if(!(new File("Objects/").exists()))
+            new File("Objects/").mkdir();
 
         if((new File("Objects/" + super.toString()).exists()))
             return false;

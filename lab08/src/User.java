@@ -173,8 +173,8 @@ public class User implements Savable{
 
     @Override
     public boolean saveToFile() {
-        if(!(new File("Objects").exists()))
-            new File("Objects").mkdir();
+        if(!(new File("Objects/").exists()))
+            new File("Objects/").mkdir();
 
         if((new File("Objects/" + super.toString()).exists()))
             return false;
