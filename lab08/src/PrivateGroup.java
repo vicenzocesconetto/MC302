@@ -24,6 +24,9 @@ public class PrivateGroup extends Group {
         this.lifts = lifts;
     }
 
+    /*Since we are not meant to save the lifts arraylist and it's the only instance variable, we just call
+    the superclass' saveToFile() and since the Group is abstract we know for sure it will never be saved*/
+
     @Override
     void addMember(User user) {
         if(!isUserInGroup(user)) {

@@ -176,13 +176,13 @@ public class User implements Savable{
         if(!(new File("Objects/").exists()))
             new File("Objects/").mkdir();
 
-        if((new File("Objects/" + super.toString()).exists()))
+        if((new File("Objects/" + originalToString()).exists()))
             return false;
 
         BufferedWriter outputFile = null;
 
         try {
-            outputFile = new BufferedWriter(new FileWriter("Objects/" + super.toString()));
+            outputFile = new BufferedWriter(new FileWriter("Objects/" + originalToString()));
 
             //Saving the id
             outputFile.write(Integer.toString(id));
@@ -220,7 +220,7 @@ public class User implements Savable{
             if(groups != null && !groups.isEmpty()) {
                 for(GroupUser groupUser: groups) {
                     groupUser.saveToFile();
-                    outputFile.write(groupUser.superToString() + "|");
+                    outputFile.write(groupUser.originalToString() + "|");
                 }
             } else
                 outputFile.write("null");
@@ -230,7 +230,7 @@ public class User implements Savable{
             // Saving the profile
             if(profile != null) {
                 profile.saveToFile();
-                outputFile.write(profile.superToString());
+                outputFile.write(profile.originalToString());
             }
             else
                 outputFile.write("null");
@@ -245,7 +245,7 @@ public class User implements Savable{
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Could not save " + super.toString());
+            System.out.println("Could not save " + originalToString());
             return false;
         } finally {
 
@@ -285,7 +285,7 @@ public class User implements Savable{
                 '}';
     }
 
-    public String superToString() {
+    public String originalToString() {
         return super.toString();
     }
 }

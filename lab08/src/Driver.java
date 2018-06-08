@@ -141,7 +141,7 @@ class Driver implements Savable{
     }
 
     @Override
-    public String superToString() {
+    public String originalToString() {
         return super.toString();
     }
 }

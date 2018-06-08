@@ -51,13 +51,13 @@ public class GroupUser implements Savable{
         if(!(new File("Objects/").exists()))
             new File("Objects/").mkdir();
 
-        if(new File("Objects/" + super.toString()).exists())
+        if(new File("Objects/" + originalToString()).exists())
             return false;
 
         BufferedWriter outputFile = null;
 
         try {
-            outputFile = new BufferedWriter(new FileWriter("Objects/" + super.toString()));
+            outputFile = new BufferedWriter(new FileWriter("Objects/" + originalToString()));
 
             // Saving the id
             outputFile.write(Integer.toString(id));
@@ -70,7 +70,7 @@ public class GroupUser implements Savable{
             // Saving the user
             if(user != null) {
                 user.saveToFile();
-                outputFile.write(user.superToString());
+                outputFile.write(user.originalToString());
             } else
                 outputFile.write("null");
 
@@ -79,7 +79,7 @@ public class GroupUser implements Savable{
             // Saving the group
             if(group != null) {
                 group.saveToFile();
-                outputFile.write(group.superToString());
+                outputFile.write(group.originalToString());
             } else
                 outputFile.write("null");
 
@@ -89,7 +89,7 @@ public class GroupUser implements Savable{
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Could not save " + super.toString());
+            System.out.println("Could not save " + originalToString());
             return false;
 
         } finally {
@@ -119,7 +119,7 @@ public class GroupUser implements Savable{
                 return out;
     }
 
-    public String superToString() {
+    public String originalToString() {
         return super.toString();
     }
 }

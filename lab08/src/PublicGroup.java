@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class PublicGroup extends Group {
+public class PublicGroup extends Group implements Savable{
 
     private ArrayList<PublicLift> lifts;
 
@@ -33,6 +33,10 @@ public class PublicGroup extends Group {
 //        System.out.println("INCBAC - UNIGOU");
 //    }
 
+
+    /*Since we are not meant to save the lifts arraylist and it's the only instance variable, we just call
+    the superclass' saveToFile() and since the Group is abstract we know for sure it will never be saved*/
+
     @Override
     void addMember(User user) {
         if(!isUserInGroup(user)) {
@@ -55,4 +59,5 @@ public class PublicGroup extends Group {
                 ", members=" + getMembers() +
                 '}';
     }
+
 }

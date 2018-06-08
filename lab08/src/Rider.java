@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 class Rider implements Savable{
@@ -82,6 +86,55 @@ class Rider implements Savable{
 
     @Override
     public boolean saveToFile() {
+        if(!(new File("Objects/").exists()))
+            new File("Objects/").mkdir();
+
+        if((new File("Objects/" + originalToString()).exists()))
+            return false;
+
+        BufferedWriter outputFile = null;
+
+        try {
+            outputFile = new BufferedWriter(new FileWriter("Objects/" + originalToString()));
+
+            if(creditCard != null)
+                outputFile.write(creditCard);
+            else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+            outputFile.write(payWithCash? "true" : "false");
+            outputFile.newLine();
+
+            outputFile.write(Integer.toString(numberOfDrivers));
+            outputFile.newLine();
+
+            if(profile != null) {
+                profile.saveToFile();
+                outputFile.write(profile.originalToString() + "|");
+            } else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Could not save " + originalToString());
+            return false;
+
+        } finally {
+
+            try {
+                if (outputFile != null)
+                    outputFile.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Glitch in the Matrix: Rider.saveToFile()");
+            }
+        }
+
         return true;
     }
 
@@ -96,7 +149,7 @@ class Rider implements Savable{
     }
 
     @Override
-    public String superToString() {
+    public String originalToString() {
         return super.toString();
     }
 }

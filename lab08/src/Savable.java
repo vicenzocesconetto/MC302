@@ -2,5 +2,5 @@ public interface Savable {
 
     public boolean saveToFile();
 
-    public String superToString();
+    public String originalToString();
 }
