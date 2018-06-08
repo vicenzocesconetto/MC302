@@ -184,11 +184,11 @@ public class User implements Savable{
         try {
             outputFile = new BufferedWriter(new FileWriter("Objects/" + super.toString()));
 
-//Saving the id
+            //Saving the id
             outputFile.write(Integer.toString(id));
             outputFile.newLine();
 
-// Saving the name
+            // Saving the name
             if(name != null)
                 outputFile.write(name);
             else
@@ -196,7 +196,7 @@ public class User implements Savable{
 
             outputFile.newLine();
 
-// Saving the email
+            // Saving the email
             if(email != null)
                 outputFile.write(email);
             else
@@ -204,7 +204,7 @@ public class User implements Savable{
 
             outputFile.newLine();
 
-// Saving the password
+            // Saving the password
             if(password != null)
                 outputFile.write(password);
             else
@@ -212,11 +212,11 @@ public class User implements Savable{
 
             outputFile.newLine();
 
-// Saving the status
+            // Saving the status
             outputFile.write(status ? "true" : "false");
             outputFile.newLine();
 
-// Saving the groups arraylist
+            // Saving the groups arraylist
             if(groups != null && !groups.isEmpty()) {
                 for(GroupUser groupUser: groups) {
                     groupUser.saveToFile();
@@ -227,7 +227,7 @@ public class User implements Savable{
 
             outputFile.newLine();
 
-// Saving the profile
+            // Saving the profile
             if(profile != null) {
                 profile.saveToFile();
                 outputFile.write(profile.superToString());
@@ -237,16 +237,16 @@ public class User implements Savable{
 
             outputFile.newLine();
 
-// Saving the idGenerator: I know it's a static int and all Users will, supposedly, have the same; but if they don't we'll get the greater one
+            // Saving the idGenerator: I know it's a static int and all Users will, supposedly, have the same; but if they don't we'll get the greater one
             outputFile.write(Integer.toString(idGenerator));
             outputFile.newLine();
 
-            outputFile.flush(); // flush it before ending, just to be safe.
+            outputFile.flush(); // flushing it before closing, just to be safe.
 
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Could not save " + super.toString());
-
+            return false;
         } finally {
 
             try {

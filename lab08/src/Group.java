@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class Group {
+public abstract class Group implements Savable{
 
     private int id;
     private String name;
@@ -87,6 +87,11 @@ public abstract class Group {
     }
 
     @Override
+    public boolean saveToFile() {
+
+    }
+
+    @Override
     public String toString() {
         return "Group{" +
                 "id=" + id +
@@ -95,5 +100,10 @@ public abstract class Group {
                 ", owner=" + owner +
                 ", members=" + members +
                 '}';
+    }
+
+    @Override
+    public String superToString() {
+        return super.toString();
     }
 }

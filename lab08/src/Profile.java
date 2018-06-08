@@ -172,45 +172,56 @@ public class Profile implements Comparable<Profile>, Savable {
         try {
             outputFile = new BufferedWriter(new FileWriter("Objects/" + super.toString()));
 
+            // Saving the sex
             outputFile.write(Character.toString(sex));
             outputFile.newLine();
 
+            // Saving the birthday
             outputFile.write(birthday);
             outputFile.newLine();
 
+            // Saving the city
             outputFile.write(city);
             outputFile.newLine();
 
+            // Saving the state
             outputFile.write(state);
             outputFile.newLine();
 
+            // Saving the telephone
             outputFile.write(telephone);
             outputFile.newLine();
 
+            // Saving the smoker status
             outputFile.write(smoker? "true" : "false");
             outputFile.newLine();
 
+            // Saving the habilitationTime
             outputFile.write(Integer.toString(habilitationTime));
             outputFile.newLine();
 
+            // Saving the rating
             outputFile.write(Float.toString(rating));
             outputFile.newLine();
 
+            // Saving the rider
             outputFile.write(riderProfile.superToString());
             outputFile.newLine();
 
+            // Saving the driver
             outputFile.write(driverProfile.superToString());
             outputFile.newLine();
 
+            // Saving the user
             outputFile.write(user.superToString());
             outputFile.newLine();
 
-            outputFile.flush(); // flush it before ending, just to be safe.
+            outputFile.flush(); // flushing it before closing, just to be safe.
 
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Could not save " + super.toString());
-
+            return false;
         } finally {
 
             try {

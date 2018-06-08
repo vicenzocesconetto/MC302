@@ -1,4 +1,7 @@
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class GroupUser implements Savable{
     private int id;
@@ -51,7 +54,53 @@ public class GroupUser implements Savable{
         if(new File("Objects/" + super.toString()).exists())
             return false;
 
+        BufferedWriter outputFile = null;
 
+        try {
+            outputFile = new BufferedWriter(new FileWriter("Objects/" + super.toString()));
+
+            // Saving the id
+            outputFile.write(Integer.toString(id));
+            outputFile.newLine();
+
+            // Saving the idGenerator
+            outputFile.write(Integer.toString(idGenerator));
+            outputFile.newLine();
+
+            // Saving the user
+            if(user != null) {
+                user.saveToFile();
+                outputFile.write(user.superToString());
+            } else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+            // Saving the group
+            if(group != null) {
+                group.saveToFile();
+                outputFile.write(group.superToString());
+            } else
+                outputFile.write("null");
+
+            outputFile.newLine();
+
+            outputFile.flush(); // flushing it before closing, just to be safe.
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Could not save " + super.toString());
+            return false;
+
+        } finally {
+            try {
+                if (outputFile != null)
+                    outputFile.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Glitch in the Matrix: GroupUser.saveToFile()");
+            }
+        }
 
         return true;
     }
