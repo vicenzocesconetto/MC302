@@ -32,6 +32,15 @@ PARTE II
 1. Qual a diferença na leitura através de um objeto BufferedInputStream para um InputStream
 (incluindo suas subclasses)?
 
+InputStream eh uma classe abstrata com o read() feito para ler um byte por vez de um aquivo. Assim, InputStream
+estabelece um protocolo comum entre as herdeiras.
+
+O BufferedInputStream eh concreto entao voce pode fazer uma instancia dele. O metodo read() do BufferedInputStream tambem
+retorna um byte por vez, mas internamente ele ja vai lendo e enchedo um buffer. Assim, a maioria das chamadas para
+read() nao ficam "bloqueadas": o proximo byte ja fica no buffer e entao eh imediatamente retornado para quem chama.
+
+Assim o InputStream eh mais lento e suas herdeiras tambem pois nenhuma delas eh buffered.
+
 
 2. A classe DataOutputStream tem alguns métodos para escrita, com as assinaturas descritas abaixo.
 Esses métodos dão throw em exceções do tipo IOException. Por que esse tipo de exceção é
@@ -42,9 +51,18 @@ public final void writeByte(int b) throws IOException;
 public final void writeChar(int i) throws IOException;
 ...;
 
+Porque podem ocorrer varios erros na escrita de arquivos: o arquivo pode nao existir ou nao estar mais la, voce pode
+nao ter permissao para escrever ou ter perdido ela, etc...
+
+Como o proprio nome ja diz, IOExceptions fazem sentido em contextos de leitura e escrita/entrada e saida de dados pois
+podem ocorrer varios imprevistos na hora de obter ou exportar informacoes.
+
 
 3. Explique a utilidade da interface Serializable, como ela pode ser usada com arquivos e cite
 duas exceções que métodos dessa interface jogam.
+
+A Serializable serve para serializar e salvar o estado de objetos em memoria permanente, como arquivos.
+IOException e ClassNotFoundException.
 
 */
 
