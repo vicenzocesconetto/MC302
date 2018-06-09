@@ -1,3 +1,3 @@
-enum PaymentMethod {
+public enum PaymentMethod {
     CREDITCARD, CASH, FREE;
 }

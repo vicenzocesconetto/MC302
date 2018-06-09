@@ -32,7 +32,7 @@ public class Lift {
 
     boolean addRider(Rider rider) {
         if(riders.size() < maxOccupation) {
-            LiftRider lr = new LiftRider(rider, this);
+            LiftRider lr = new LiftRider(this, rider);
             rider.addLiftRider(lr);
             return riders.add(lr);
         }
@@ -67,7 +67,6 @@ public class Lift {
     boolean addPaymentMethod(PaymentMethod pay) {
         if (pay != PaymentMethod.FREE)
             return acceptedPaymentMethods.add(pay);
-
         else {
             acceptedPaymentMethods.clear();
             price = 0;
@@ -169,8 +168,8 @@ public class Lift {
 
     public boolean rateDriver(int userId, float rating) {
         if(driver != null && driver.getDriver() != null) {
-            for (LiftRider liftRider : riders) {
-                if (liftRider.getRider().getProfile().getUser().getId() == userId) {
+            for(LiftRider liftRider : riders) {
+                if(liftRider.getRider().getProfile().getUser().getId() == userId) {
                     driver.setRating(rating);
                     driver.getDriver().getDriverProfile().calculateRating();
                     return true;
@@ -181,15 +180,14 @@ public class Lift {
     }
 
     public boolean rateRiders(float rating) {
-        if(!riders.isEmpty()) {
-            for (LiftRider liftRider : riders) {
+        if(riders != null && !riders.isEmpty()) {
+            for(LiftRider liftRider : riders) {
                 liftRider.setRating(rating);
                 liftRider.getRider().getProfile().calculateRating();
             }
             return true;
         } else
             return false;
-
     }
 
     @Override

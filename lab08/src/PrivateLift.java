@@ -4,7 +4,6 @@ public class PrivateLift extends Lift {
 
     private ArrayList<PrivateGroup> groups;
 
-
     public PrivateLift() {
         super();
         groups = new ArrayList<PrivateGroup>();
@@ -15,11 +14,18 @@ public class PrivateLift extends Lift {
         groups = new ArrayList<PrivateGroup>();
     }
 
+    public PrivateLift(LiftDriver driver, int availableSeats) {
+        super(driver, availableSeats);
+        groups = new ArrayList<PrivateGroup>();
+    }
+
     public boolean addRider(Rider rider) {
-        for(PrivateGroup pv: groups) {
-            if(pv.isUserInGroup(rider.getProfile().getUser())) {
-                LiftRider lr = new LiftRider(rider, this);
-                return getRiders().add(lr) && rider.addLiftRider(lr);
+        if(groups != null && rider != null && rider.getProfile() != null && rider.getProfile().getUser() != null) {
+            for (PrivateGroup pv : groups) {
+                if (pv.isUserInGroup(rider.getProfile().getUser())) {
+                    LiftRider lr = new LiftRider(this, rider);
+                    return getRiders().add(lr) && rider.addLiftRider(lr);
+                }
             }
         }
         return false;

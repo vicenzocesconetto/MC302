@@ -10,10 +10,10 @@ public class PrivateGroup extends Group {
         addMember(firstOwner);
     }
 
-    public PrivateGroup(User firstOwner, PrivateLift p) {
+    public PrivateGroup(User firstOwner, PrivateLift privateLift) {
         super();
         lifts = new ArrayList<PrivateLift>();
-        lifts.add(p);
+        lifts.add(privateLift);
     }
 
     public ArrayList<PrivateLift> getLifts() {

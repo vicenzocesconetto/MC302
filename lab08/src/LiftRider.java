@@ -12,13 +12,13 @@ public class LiftRider {
         this.rider = rider;
     }
 
-    public LiftRider(Rider rider, Lift lift) {
+    public LiftRider(Lift lift, Rider rider) {
         this();
         this.rider = rider;
         this.lift = lift;
     }
 
-    public LiftRider(Rider rider, Lift lift, float rating) {
+    public LiftRider(Lift lift, Rider rider, float rating) {
         this.rider = rider;
         this.lift = lift;
         this.rating = rating;
