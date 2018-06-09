@@ -4,7 +4,6 @@ public class PublicGroup extends Group implements Savable{
 
     private ArrayList<PublicLift> lifts;
 
-
     public PublicGroup() {
         super();
         lifts = new ArrayList<PublicLift>();
@@ -12,12 +11,8 @@ public class PublicGroup extends Group implements Savable{
 
     public PublicGroup(User firstOwner) {
         super(firstOwner);
+        lifts = new ArrayList<PublicLift>();
         addMember(firstOwner);
-    }
-
-    public PublicGroup(PublicLift p) {
-        this();
-        lifts.add(p);
     }
 
     public ArrayList<PublicLift> getLifts() {
@@ -32,7 +27,6 @@ public class PublicGroup extends Group implements Savable{
 ////        some serious lambdas
 //        System.out.println("INCBAC - UNIGOU");
 //    }
-
 
     /*Since we are not meant to save the lifts arraylist and it's the only instance variable, we just call
     the superclass' saveToFile() and since the Group is abstract we know for sure it will never be saved*/

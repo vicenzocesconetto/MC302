@@ -24,7 +24,7 @@ public class PrivateLift extends Lift {
             for (PrivateGroup pv : groups) {
                 if (pv.isUserInGroup(rider.getProfile().getUser())) {
                     LiftRider lr = new LiftRider(this, rider);
-                    return getRiders().add(lr) && rider.addLiftRider(lr);
+                    return getRiders().add(lr) && rider.addRider(lr);
                 }
             }
         }
@@ -32,7 +32,7 @@ public class PrivateLift extends Lift {
     }
 
     public boolean addGroup(PrivateGroup pv) {
-        if(pv.isUserInGroup(getDriver().getDriver().getDriverProfile().getUser()))
+        if(pv.isUserInGroup(getDriver().getDriver().getDriverProfile().getUser())) // We cant add the PrivateLift to a PrivateGroup if the driver isnt in the group
             return groups.add(pv) && pv.getLifts().add(this);
         return false;
     }

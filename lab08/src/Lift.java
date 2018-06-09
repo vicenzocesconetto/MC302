@@ -33,7 +33,7 @@ public class Lift {
     boolean addRider(Rider rider) {
         if(riders.size() < maxOccupation) {
             LiftRider lr = new LiftRider(this, rider);
-            rider.addLiftRider(lr);
+            rider.addRider(lr);
             return riders.add(lr);
         }
         return false;

@@ -4,7 +4,6 @@ public class PublicLift extends Lift {
 
     private ArrayList<PublicGroup> groups;
 
-
     public PublicLift() {
         super();
         groups = new ArrayList<PublicGroup>();
@@ -17,14 +16,19 @@ public class PublicLift extends Lift {
 
     public boolean addRider(Rider rider) {
         if(groups.isEmpty()) {
-            return getRiders().add(new LiftRider(rider, this));
+            LiftRider liftRider = new LiftRider(this, rider);
+            rider.addRider(liftRider);
+            return getRiders().add(liftRider);
         } else {
             for(PublicGroup pb: groups) {
-                if(pb.isUserInGroup(rider.getProfile().getUser()))
-                    return getRiders().add(new LiftRider(rider, this));
+                if(pb.isUserInGroup(rider.getProfile().getUser())) {
+                    LiftRider liftRider = new LiftRider(this, rider);
+                    rider.addRider(liftRider);
+                    return getRiders().add(liftRider);
+                }
             }
-            return false;
         }
+        return false;
     }
 
     public boolean addGroup(PublicGroup pb) {

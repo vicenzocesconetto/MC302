@@ -80,7 +80,7 @@ class Rider implements Savable{
         this.lifts = lifts;
     }
 
-    public boolean addLiftRider(LiftRider lr) {
+    public boolean addRider(LiftRider lr) {
         return lifts.add(lr);
     }
 

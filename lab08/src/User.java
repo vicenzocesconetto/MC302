@@ -11,7 +11,6 @@ public class User implements Savable{
     private Profile profile;
     private static int idGenerator;
 
-
     static {
         idGenerator = 0;
     }
@@ -39,6 +38,22 @@ public class User implements Savable{
         this.password = password;
     }
 
+    public User(String name, String email, String password, boolean status) {
+        this();
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+    }
+
+    public User(String name, String email, String password, boolean status, Profile profile) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.profile = profile;
+    }
+
     public void createPublicGroup() {
         PublicGroup p = new PublicGroup(this);
     }
@@ -48,27 +63,27 @@ public class User implements Savable{
     }
 
     void removeGroup(int id) {
-        for (GroupUser i: groups) {
-            if(i.getGroup().getId() == id) {
-                if (i.getGroup() instanceof PublicGroup || (i.getGroup() instanceof PrivateGroup && !(i.getGroup().getOwner().equals(this)))) {
-                    i.getGroup().getMembers().remove(i);
-                    groups.remove(i);
-                    if(i.getGroup().getOwner().equals(this))
-                        i.getGroup().changeOwner(this, null);
+        for(GroupUser groupUser: groups) {
+            if(groupUser.getGroup().getId() == id) {
+                if (groupUser.getGroup() instanceof PublicGroup || (groupUser.getGroup() instanceof PrivateGroup && !(groupUser.getGroup().getOwner().equals(this)))) {
+                    groupUser.getGroup().getMembers().remove(groupUser);
+                    groups.remove(groupUser);
+                    if(groupUser.getGroup().getOwner().equals(this))
+                        groupUser.getGroup().changeOwner(this, null);
                 }
                 return;
             }
         }
     }
 
-    void removeGroup(Group g) {
-        for (GroupUser i: groups) {
-            if(i.getGroup().equals(g)) {
-                if(i.getGroup() instanceof PublicGroup || (i.getGroup() instanceof PrivateGroup && !(i.getGroup().getOwner().equals(this)))) {
-                    g.getMembers().remove(i);
-                    groups.remove(i);
-                    if(i.getGroup().getOwner().equals(this))
-                        i.getGroup().changeOwner(this, null);
+    void removeGroup(Group group) {
+        for(GroupUser groupUser: groups) {
+            if(groupUser.getGroup().equals(group)) {
+                if(groupUser.getGroup() instanceof PublicGroup || (groupUser.getGroup() instanceof PrivateGroup && !(groupUser.getGroup().getOwner().equals(this)))) {
+                    group.getMembers().remove(groupUser);
+                    groups.remove(groupUser);
+                    if(groupUser.getGroup().getOwner().equals(this))
+                        groupUser.getGroup().changeOwner(this, null);
                 }
                 return;
             }
@@ -76,14 +91,13 @@ public class User implements Savable{
     }
 
     void updateGroup(User owner, int id, String description, String name) {
-        if(!equals(owner))
-            return;
-
-        for(GroupUser i: groups) {
-            if(i.getGroup().getId() == id) {
-                i.getGroup().setDescription(description);
-                i.getGroup().setName(name);
-                return;
+        if(equals(owner)) {
+            for(GroupUser groupUser : groups) {
+                if (groupUser.getGroup().getId() == id) {
+                    groupUser.getGroup().setDescription(description);
+                    groupUser.getGroup().setName(name);
+                    return;
+                }
             }
         }
     }

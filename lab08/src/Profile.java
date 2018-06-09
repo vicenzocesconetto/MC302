@@ -17,7 +17,6 @@ public class Profile implements Comparable<Profile>, Savable {
     private Driver driverProfile;
     private User user;
 
-
     public Profile(char sex, String birthday, String city, String state, String telephone, boolean smoker, int habilitationTime) {
         rating = 5;
         this.setSex(sex);
