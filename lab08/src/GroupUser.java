@@ -17,8 +17,19 @@ public class GroupUser implements Savable{
         id = idGenerator++;
     }
 
+    public GroupUser(Group group) {
+        this();
+        this.group = group;
+    }
+
     public GroupUser(User user) {
         this();
+        this.user = user;
+    }
+
+    public GroupUser(Group group, User user) {
+        this();
+        this.group = group;
         this.user = user;
     }
 

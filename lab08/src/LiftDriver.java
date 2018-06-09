@@ -7,6 +7,11 @@ public class LiftDriver {
         rating = 5;
     }
 
+    public LiftDriver(Lift lift) {
+        this();
+        this.lift = lift;
+    }
+
     public LiftDriver(Driver driver) {
         this();
         this.driver = driver;

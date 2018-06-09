@@ -23,27 +23,33 @@ class Driver implements Savable{
     }
 
     public PublicLift offerPublicLift(float price, ArrayList<PaymentMethod> acceptedPaymentMethods) {
-        LiftDriver liftDriver = new LiftDriver(this); // instancia a classe associativa CaronaCaronante
-        PublicLift lift = new PublicLift(liftDriver); // instancia a classe Carona
-        liftDriver.setLift(lift); // da a carona para a CaronaCaronante
-        lift.setPrice(price); // da o preco para a carona
-        lifts.add(liftDriver); // adiciona a classe associativa ao array
-        lift.setAcceptedPaymentMethods(acceptedPaymentMethods); // da as formas de pagamento
+        LiftDriver liftDriver = new LiftDriver(this); // instantiating association class LiftDriver and make it see the driver
+        PublicLift lift = new PublicLift(liftDriver); // instantiate a Lift and make it see the LiftDriver
+        liftDriver.setLift(lift); // make the LiftDriver see the Lift
+        lifts.add(liftDriver); // add the LiftDriver to the relationship array
+        lift.setPrice(price); // set the lift's price
+        lift.setAcceptedPaymentMethods(acceptedPaymentMethods); // set the PaymentMethods
         return lift;
     }
 
     public PrivateLift offerPrivateLift(float price, ArrayList<PaymentMethod> acceptedPaymentMethods) {
-        LiftDriver liftDriver = new LiftDriver(this); // instancia a classe associativa CaronaCaronante
-        PrivateLift lift = new PrivateLift(liftDriver); // instancia a classe Carona
-        liftDriver.setLift(lift); // da a carona para a CaronaCaronante
-        lift.setPrice(price); // da o preco para a carona
-        lifts.add(liftDriver); // adiciona a classe associativa ao array
-        lift.setAcceptedPaymentMethods(acceptedPaymentMethods); // da as formas de pagamento
+        LiftDriver liftDriver = new LiftDriver(this); // instantiating association class LiftDriver and make it see the driver
+        PrivateLift lift = new PrivateLift(liftDriver); // instantiate a Lift and make it see the LiftDriver
+        liftDriver.setLift(lift); // make the LiftDriver see the Lift
+        lifts.add(liftDriver); // add the LiftDriver to the relationship array
+        lift.setPrice(price); // set the lift's price
+        lift.setAcceptedPaymentMethods(acceptedPaymentMethods); // set the PaymentMethods
         return lift;
     }
 
     public void addLift(LiftDriver l) {
         lifts.add(l);
+    }
+
+    public void addLift(Lift lift) {
+        LiftDriver liftDriver = new LiftDriver(lift, this);
+        lift.setDriver(liftDriver);
+        lifts.add(liftDriver);
     }
 
     public int getHabilitationTime() {

@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class Lift {
-
     private ArrayList<LiftRider> riders;
     private LiftDriver driver;
     private double meetingPointLatitude;
@@ -25,8 +24,8 @@ public class Lift {
     }
 
     public Lift(LiftDriver driver, int availableSeats) {
-        this.driver = driver;
         maxOccupation = availableSeats;
+        this.driver = driver;
         riders = new ArrayList<LiftRider>();
         acceptedPaymentMethods = new ArrayList<PaymentMethod>();
     }
@@ -37,16 +36,22 @@ public class Lift {
             rider.addLiftRider(lr);
             return riders.add(lr);
         }
-//        return maxOccupation != riders.size() && riders.add(new LiftRider(rider, this));
         return false;
     }
 
     boolean removeRider(Rider rider) {
         for(LiftRider liftRider: riders) {
             if(liftRider.getRider().equals(rider)){
-                riders.remove(liftRider);
-                return true;
+                return riders.remove(liftRider);
             }
+        }
+        return false;
+    }
+
+    boolean removeRider(LiftRider liftRider) {
+        for(LiftRider lr : riders) {
+            if(liftRider.equals(lr))
+                return riders.remove(liftRider);
         }
         return false;
     }
