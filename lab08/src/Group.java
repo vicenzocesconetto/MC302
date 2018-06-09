@@ -33,8 +33,8 @@ public abstract class Group implements Savable{
     }
 
     public boolean isUserInGroup(User user) {
-        for(GroupUser groupUser: members) {
-            if(groupUser.getUser() == user)
+        for(GroupUser groupUser : members) {
+            if(user.equals(groupUser.getUser()))
                 return true;
         }
         return false;
