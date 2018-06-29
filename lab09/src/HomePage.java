@@ -29,7 +29,7 @@ public class HomePage extends JFrame {
         else
             str += "Not Available";
 
-        str += "\n\nGRUPOS\n";
+        str += "\n\nGROUPS\n";
 
         if(user.getGroups() != null)
             str += user.getGroups();
@@ -41,22 +41,22 @@ public class HomePage extends JFrame {
         textField.setEditable(false);
 
 
-        JButton oferecerCarona = new JButton("Oferecer Carona");
-        JButton criarGrupo = new JButton("Criar Grupo");
+        JButton offerLift = new JButton("Offer Lift");
+        JButton createGroup = new JButton("Create Group");
 
-        oferecerCarona.setBounds(20, 300, 200, 30);
-        criarGrupo.setBounds(20, 330, 200, 30);
+        offerLift.setBounds(20, 300, 200, 30);
+        createGroup.setBounds(20, 330, 200, 30);
 
-        oferecerCarona.addActionListener(new ActionListener() {
+        createGroup.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreateGroupGUI createGroupGUI = new CreateGroupGUI();
+                CreateGroupGUI createGroupGUI = new CreateGroupGUI(user);
                 createGroupGUI.setVisible(true);
             }
         });
 
-        contentPane.add(criarGrupo);
-        contentPane.add(oferecerCarona);
+        contentPane.add(createGroup);
+        contentPane.add(offerLift);
         contentPane.add(textField);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE); /*Without this line, the app doesn't finish when the window is closed*/

@@ -34,14 +34,19 @@ public class CreateGroupGUI extends JFrame{
         createGroup.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                nameField.setText("");
+                descriptionField.setText("");
+                privateCheckBox.setSelected(false);
+
                 if(privateCheckBox.isSelected()) {
                     user.createPrivateGroup(nameField.getText(), descriptionField.getText());
+
                     JOptionPane.showMessageDialog(null,"Private Group created",
                             "Success",JOptionPane.INFORMATION_MESSAGE);
                 }
                 else {
                     user.createPublicGroup(nameField.getText(), descriptionField.getText());
-                    JOptionPane.showMessageDialog(null,"Private Group created",
+                    JOptionPane.showMessageDialog(null,"Public Group created",
                             "Success",JOptionPane.INFORMATION_MESSAGE);
                 }
             }
@@ -57,6 +62,5 @@ public class CreateGroupGUI extends JFrame{
         contentPane.add(privateLabel);
 
         setSize(500, 500);
-//        setModalityType(DEFAULT_MODALITY_TYPE);
     }
 }
