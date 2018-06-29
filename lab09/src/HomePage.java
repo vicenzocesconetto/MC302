@@ -47,12 +47,23 @@ public class HomePage extends JFrame {
         offerLift.setBounds(20, 300, 200, 30);
         createGroup.setBounds(20, 330, 200, 30);
 
-        createGroup.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+//        createGroup.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                CreateGroupGUI createGroupGUI = new CreateGroupGUI(user);
+//                createGroupGUI.setVisible(true);
+//            }
+//        });
+
+        // Lambda version of the commented code above
+        createGroup.addActionListener((ActionEvent e) -> {
                 CreateGroupGUI createGroupGUI = new CreateGroupGUI(user);
                 createGroupGUI.setVisible(true);
-            }
+        });
+
+        offerLift.addActionListener((ActionEvent e) -> {
+            OfferLiftGUI offerLiftGUI = new OfferLiftGUI(user);
+            offerLiftGUI.setVisible(true);
         });
 
         contentPane.add(createGroup);
