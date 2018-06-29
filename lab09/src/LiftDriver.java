@@ -55,6 +55,6 @@ public class LiftDriver {
 
     @Override
     public String toString() {
-        return "Driver = " + driver.getDriverProfile().getUser().getName() + "in " +lift.getMeetingHourDay() + "\n";
+        return "Driver = " + driver.getDriverProfile().getUser().getName() + " in " +lift.getMeetingHourDay() + "\n";
     }
 }

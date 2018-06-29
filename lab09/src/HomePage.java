@@ -40,12 +40,12 @@ public class HomePage extends JFrame {
         JTextArea textField = new JTextArea(str);
         textField.setEditable(false);
 
-
         JButton offerLift = new JButton("Offer Lift");
         JButton createGroup = new JButton("Create Group");
 
-        offerLift.setBounds(20, 300, 200, 30);
-        createGroup.setBounds(20, 330, 200, 30);
+        textField.setBounds(1, 1, 400, 400);
+        offerLift.setBounds(1, 401, 200, 30);
+        createGroup.setBounds(201, 401, 200, 30);
 
 //        createGroup.addActionListener(new ActionListener() {
 //            @Override
@@ -70,6 +70,7 @@ public class HomePage extends JFrame {
         contentPane.add(offerLift);
         contentPane.add(textField);
 
+        setLayout(null); // So the placement of components work as intended
         setDefaultCloseOperation(EXIT_ON_CLOSE); /*Without this line, the app doesn't finish when the window is closed*/
         setSize(500, 500); //The default is set to 0 by 0
         setLocationRelativeTo(null); // Use this method to make the window pop-up on the center

@@ -6,11 +6,7 @@ import java.util.ArrayList;
 
 public class CreateGroupGUI extends JFrame{
 
-    User user;
-
     public CreateGroupGUI(User user) {
-
-        this.user = user;
 
         setTitle("Create Group");
 
@@ -27,8 +23,8 @@ public class CreateGroupGUI extends JFrame{
         nameField.setBounds(100, 10, 100, 30);
         descriptionLabel.setBounds(10, 50, 80, 30);
         descriptionField.setBounds(100, 50, 100, 30);
-        privateCheckBox.setBounds(10, 200, 30, 30);
-        privateLabel.setBounds(30, 100, 50, 30);
+        privateCheckBox.setBounds(10, 105, 20, 20);
+        privateLabel.setBounds(30, 100, 100, 30);
         createGroup.setBounds(200, 400, 200, 50);
 
         createGroup.addActionListener(new ActionListener() {
@@ -61,6 +57,7 @@ public class CreateGroupGUI extends JFrame{
         contentPane.add(privateCheckBox);
         contentPane.add(privateLabel);
 
+        setLayout(null);
         setSize(500, 500);
     }
 }
