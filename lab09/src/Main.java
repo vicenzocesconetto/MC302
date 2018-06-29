@@ -1,3 +1,32 @@
+/*
+
+Quais as principais diferenças entre Swing e AWT?
+
+Swing eh o Java puro. Todos os componentes sao feitos completamente em Java. que o nao eh o caso do AWT.
+Assim os programs sao portateis e iguais independente da plataforma.
+Alem disso Swing tem muito mais componentes que o AWT.
+
+
+Qual a vantagem de se usar um RootPaneContainer?
+
+Melhor administracao da interface atraves da contentPane ao inves de diretamente pelo Frame.
+
+
+Quando temos um JDialog visível o que ocorre com as outras janelas do sistema?
+
+As outras telas sao travadas ate ele ser fechado.
+
+
+Explique o que é uma função callback. Como são implementadas em Java? Não use código,
+explique com suas palavras.
+
+Uma funcao callback eh uma funcao chamada quando uma acao/evento ocorre. Em Java nao existem funcoes, entao
+o a funcao de callback eh um metodo de uma interface comum para quando a acao ocorre.
+
+
+*/
+
+
 import java.util.ArrayList;
 
 public class Main {
