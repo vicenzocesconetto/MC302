@@ -9,10 +9,16 @@ public class PublicGroup extends Group implements Savable{
         lifts = new ArrayList<PublicLift>();
     }
 
-    public PublicGroup(User firstOwner) {
-        super(firstOwner);
+    public PublicGroup(User owner) {
+        super(owner);
         lifts = new ArrayList<PublicLift>();
-        addMember(firstOwner);
+        addMember(owner);
+    }
+
+    public PublicGroup(User owner, String name, String description) {
+        super(owner, name, description);
+        lifts = new ArrayList<PublicLift>();
+        addMember(owner);
     }
 
     public ArrayList<PublicLift> getLifts() {

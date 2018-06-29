@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class HomePage extends JFrame {
 
@@ -35,7 +37,6 @@ public class HomePage extends JFrame {
             str += "Not Available";
 
 
-
         JTextArea textField = new JTextArea(str);
         textField.setEditable(false);
 
@@ -45,6 +46,14 @@ public class HomePage extends JFrame {
 
         oferecerCarona.setBounds(20, 300, 200, 30);
         criarGrupo.setBounds(20, 330, 200, 30);
+
+        oferecerCarona.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CreateGroupGUI createGroupGUI = new CreateGroupGUI();
+                createGroupGUI.setVisible(true);
+            }
+        });
 
         contentPane.add(criarGrupo);
         contentPane.add(oferecerCarona);

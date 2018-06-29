@@ -23,9 +23,22 @@ public abstract class Group implements Savable{
         members = new ArrayList<GroupUser>();
     }
 
-    public Group(User firstOwner) {
+    public Group(User owner) {
         this();
-        owner = firstOwner;
+        this.owner = owner;
+    }
+
+    public Group(User owner, String name) {
+        this();
+        this.owner = owner;
+        this.name = name;
+    }
+
+    public Group(User owner, String name, String description) {
+        this();
+        this.owner = owner;
+        this.name = name;
+        this.description = description;
     }
 
     void changeOwner(User old, User newOwner) {

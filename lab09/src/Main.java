@@ -61,6 +61,9 @@ public class Main {
         PublicGroup gpu = new PublicGroup();
         PrivateGroup ec017 = new PrivateGroup(u0);
 
+        gpu.setName("GPU");
+        ec017.setName("EC017");
+
         try {
             u0.addUserToPrivateGroup(u1, ec017);
         } catch (SystemLiftException e) {
@@ -102,7 +105,7 @@ public class Main {
         carona.rateRiders(4.5f);
 
 
-        HomePage homePage = new HomePage(u3);
+        HomePage homePage = new HomePage(u2);
     }
 }
 

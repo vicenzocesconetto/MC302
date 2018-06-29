@@ -118,16 +118,13 @@ public class GroupUser implements Savable{
 
     @Override
     public String toString() {
-        String out = "GroupUser{" +
-                "id=" + id;
-                if(user != null) {
-                    out += ", user=" + user.getName();
-                }
-                if(group != null) {
-                    out += ", group Id=" + group.getId();
-                }
-                out += '}';
-                return out;
+        String out = "Group = " + group.getName();
+        if(group instanceof PublicGroup)
+            out += " - Grupo Publico";
+        else
+            out += " - Grupo Privado";
+        out += "\n";
+        return out;
     }
 
     public String originalToString() {

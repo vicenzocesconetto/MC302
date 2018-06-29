@@ -58,8 +58,16 @@ public class User implements Savable{
         PublicGroup p = new PublicGroup(this);
     }
 
+    public void createPublicGroup(String name, String description) {
+        PublicGroup p = new PublicGroup();
+    }
+
     public void createPrivateGroup() {
         PrivateGroup p = new PrivateGroup(this);
+    }
+
+    public void createPrivateGroup(String name, String description) {
+        PrivateGroup p = new PrivateGroup(this, name, description);
     }
 
     void removeGroup(int id) {
