@@ -47,4 +47,9 @@ public class LiftRider {
     public void setRating(float rating) {
         this.rating = rating;
     }
+
+    @Override
+    public String toString() {
+        return "Driver = " + lift.getDriver().getDriver().getDriverProfile().getUser().getName() + " in " + lift.getMeetingHourDay() + "\n";
+    }
 }
